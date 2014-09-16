@@ -1,0 +1,22 @@
+<div class="page-header clearfix">
+  <div class="pull-left">
+    <h1>Show address <%= @address.ip_address %></h1>
+  </div>
+  <div class="pull-right btn-header">
+    <a href="<%= addresses_path %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+      Back
+    </a>
+    <a href="<%= edit_address_path @address %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-eye-open"></span>
+      Edit
+    </a>
+  </div>
+</div>
+
+<p>IP: <%= @address.ip_address if @address.ip_address %></p>
+<p>Rete: <%= @address.network.name if @address.network %></p>
+<p>Riservato: <%= @address.reserved %></p>
+<p>Assegnato a: <%= @address.assigned_address.operator.name if @address.assigned_address %></p>
+<p><%= t(:created_at) %>: <%= @address.created_at  %></p>
+<p><%= t(:updated_at) %>: <%= @address.updated_at  %></p>

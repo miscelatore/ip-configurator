@@ -1,0 +1,47 @@
+<div class="page-header clearfix">
+  <div class="pull-left">
+    <h1>Show network</h1>
+  </div>
+  <div class="pull-right btn-header">
+    <a href="<%= networks_path %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+      Back
+    </a>
+    <a href="<%= edit_network_path(@network) %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-eye-open"></span>
+      Edit
+    </a>
+  </div>
+</div>
+
+
+<p><%= t(:name) %>: <%= @network.name if @network.name %></p>
+<p><%= t(:start_address) %>: <%= @network.start_address if @network.start_address %></p>
+<p><%= t(:space) %>: <%= @network.space if @network.space %></p>
+<p><%= t(:gateway) %>: <%= @network.gateway if @network.gateway %></p>
+<p><%= t(:netmask) %>: <%= @network.netmask if @network.netmask %></p>
+<p><%= t(:server_dns) %>: <%= @network.server_dns if @network.server_dns %></p>
+<p><%= t(:dhcp_enabled) %>: <%= @network.dhcp_enabled %></p>
+<p><%= t(:dns_zone) %>: <%= @network.dns_zone if @network.dns_zone %></p>
+<p><%= t(:pxefile) %>: <%= @network.pxefile if @network.pxefile %></p>
+
+<hr>
+	
+<h4><%= t(:addresses) %></h4>
+
+<div class="table-responsive">
+	<table class="table table-striped table-hover">
+	  <tbody>
+			<tr>
+				<th><%= t(:ip) %></th>
+				<th><%= t(:reserverd) %></th>
+			</tr>
+			<% @network.addresses.each do |address| %>
+				<tr>
+					<td><%= address.toString %></td>
+					<td><%= address.reserved %></td>
+			  </tr>
+			<% end %>
+	  </tbody>
+	</table>
+</div>

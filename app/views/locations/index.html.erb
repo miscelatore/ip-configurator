@@ -1,0 +1,29 @@
+<div class="container">
+  
+	<div class="page-header clearfix">
+	  <div class="pull-left">
+	    <h1>Listing Locations</h1>
+	  </div>
+	  <div class="pull-right btn-header">
+	    <a href="<%= new_location_path %>" class="btn btn-primary">
+	      <span class="glyphicon glyphicon-plus"></span>
+	      New Location
+	    </a>
+	  </div>
+	</div>
+	
+	<div class="row">
+	  <div class="column">
+	    <%= render 'search' %>
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="column">
+	    <%= render 'locations' %>
+	  </div>
+	</div>
+	
+	<%= paginate @locations %>
+
+</div>

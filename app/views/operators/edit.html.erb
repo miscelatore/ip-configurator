@@ -1,0 +1,17 @@
+<div class="page-header clearfix">
+  <div class="pull-left">
+    <h1>Editing Operator</h1>
+  </div>
+  <div class="pull-right btn-header">
+    <a href="<%= operators_path %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+      Back
+    </a>
+    <a href="<%= operator_path @operator %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-eye-open"></span>
+      Show
+    </a>
+  </div>
+</div>
+
+<%= render 'form' %>

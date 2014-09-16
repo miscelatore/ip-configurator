@@ -1,0 +1,28 @@
+<div class="page-header clearfix">
+  <div class="pull-left">
+    <h1>Show assigned address <%= @assigned_address.address.ip_address %></h1>
+  </div>
+  <div class="pull-right btn-header">
+    <a href="<%= assigned_addresses_path %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+      Back
+    </a>
+    <a href="<%= edit_assigned_address_path @assigned_address %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-eye-open"></span>
+      Edit
+    </a>
+  </div>
+</div>
+
+<p><%= t(:address) %>: <%= @assigned_address.address.ip_address %></p>
+<p><%= t(:hostname) %>: <%= @assigned_address.hostname  %></p>
+<p><%= t(:hardware_type) %>: <%= @assigned_address.hardware.name  %></p>
+<p><%= t(:operator) %>: <%= @assigned_address.operator.name  %></p>
+<p><%= t(:mac_address) %>: <%= @assigned_address.mac  %></p>
+<p><%= t(:description) %>: <%= @assigned_address.description  %></p>
+<p><%= t(:location_port_id) %>: <%= @assigned_address.location_port.name if @assigned_address.location_port %></p>
+<p><%= t(:enabled) %>: <%= @assigned_address.enabled  %></p>
+<p><%= t(:created_at) %>: <%= @assigned_address.created_at  %></p>
+<p><%= t(:updated_at) %>: <%= @assigned_address.updated_at  %></p>
+
+

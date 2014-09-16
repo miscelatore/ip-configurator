@@ -1,0 +1,73 @@
+<%= form_for(@network, html: { class: "form-horizontal" }) do |f| %>
+  <% if @network.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@network.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+      <% @network.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+	</div>
+	<div class="form-group">
+    <%= f.label :start_address, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :start_address, class: 'form-control' %>
+    </div>
+	</div>
+	<div class="form-group">
+    <%= f.label :space, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :space, class: 'form-control' %>
+    </div>
+	</div>
+	<div class="form-group">
+    <%= f.label :gateway, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :gateway, class: 'form-control' %>
+    </div>
+	</div>
+  <div class="form-group">
+    <%= f.label :netmask, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :netmask, class: 'form-control' %>
+    </div>
+	</div>
+  <div class="form-group">
+    <%= f.label :server_dns, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :server_dns, class: 'form-control' %>
+    </div>
+	</div>
+  <div class="form-group">
+    <%= f.label :dhcp_enabled, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.check_box :dhcp_enabled, class: 'form-control' %>
+    </div>
+	</div>	
+  <div class="form-group">
+    <%= f.label :dns_zone, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :dns_zone, class: 'form-control' %>
+    </div>
+	</div>
+  <div class="form-group">
+    <%= f.label :pxefile, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :pxefile, class: 'form-control' %>
+    </div>
+	</div>
+
+
+  <div class="actions col-md-offset-2">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

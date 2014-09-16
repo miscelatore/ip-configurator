@@ -1,0 +1,2 @@
+class LocationPortsController < ApplicationController
+end

@@ -1,0 +1,26 @@
+<div class="container">
+  
+	<div class="page-header clearfix">
+	  <div class="pull-left">
+	    <h1>Listing Addresses</h1>
+	  </div>
+	  <div class="pull-right btn-header">
+	    
+	  </div>
+	</div>
+	
+	<div class="row">
+	  <div class="column">
+	    <%= render 'search' %>
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="column" id="addresses">
+	    <%= render 'addresses' %>
+	  </div>
+	</div>
+	
+	<%= paginate @addresses %>
+
+</div>

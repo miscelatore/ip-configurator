@@ -1,0 +1,40 @@
+<%= form_for(@location, html: { class: "form-horizontal" }) do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+      <% @location.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-2">
+			<%= f.fields_for :location_ports do |builder| %>
+		    <%= render 'location_port_fields', f: builder %>
+		  <% end %>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-2">
+		  <%= link_to_add_fields "Add Port", f, :location_ports %>
+		</div>
+	</div>
+
+	<div class="row">
+	  <div class="actions col-md-offset-2">
+	    <%= f.submit class: 'btn btn-primary' %>
+	  </div>
+	</div>
+<% end %>

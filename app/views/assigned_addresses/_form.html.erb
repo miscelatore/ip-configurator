@@ -1,0 +1,67 @@
+<%= form_for(@assigned_address, html: { class: "form-horizontal" }) do |f| %>
+  <% if @assigned_address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@assigned_address.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+      <% @assigned_address.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="form-group">
+    <%= f.label :address_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+			<%= f.select(:address_id, Address.all.collect {|a| [a.toString, a.id]}, {:include_blank => true, :selected => @assigned_address.address_id }, class: 'form-control' ) %>
+    </div>
+	</div>
+	<div class="form-group">
+    <%= f.label :hostname, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :hostname, class: 'form-control' %>
+    </div>
+	</div>
+	<div class="form-group">
+    <%= f.label :hardware_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+			<%= f.select(:hardware_id, Hardware.all.collect {|hw| [hw.name, hw.id]}, {:include_blank => true, :selected => @assigned_address.hardware_id }, class: 'form-control' ) %>
+    </div>
+	</div>
+	<div class="form-group">
+    <%= f.label :operator_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+			<%= f.select(:operator_id, Operator.all.collect {|op| [op.name, op.id]}, {:include_blank => true, :selected => @assigned_address.operator_id }, class: 'form-control' ) %>	
+    </div>
+	</div>
+  <div class="form-group">
+    <%= f.label :mac, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :mac, class: 'form-control' %>
+    </div>
+	</div>
+  <div class="form-group">
+    <%= f.label :description, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :description, class: 'form-control' %>
+    </div>
+	</div>	
+  <div class="form-group">
+    <%= f.label :location_port_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+			<%= f.select(:location_port_id, LocationPort.all.collect {|lp| [lp.name, lp.id]}, {:include_blank => true, :selected => @assigned_address.location_port_id }, class: 'form-control' ) %>	
+    </div>
+	</div>
+  <div class="form-group">
+    <%= f.label :enabled, class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.check_box :enabled, class: 'form-control' %>
+    </div>
+	</div>
+
+
+  <div class="actions col-md-offset-2">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

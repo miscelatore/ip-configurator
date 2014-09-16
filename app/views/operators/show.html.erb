@@ -1,0 +1,47 @@
+<div class="page-header clearfix">
+  <div class="pull-left">
+    <h1>Show operator</h1>
+  </div>
+  <div class="pull-right btn-header">
+    <a href="<%= operators_path %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+      Back
+    </a>
+    <a href="<%= edit_operator_path @operator %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-eye-open"></span>
+      Edit
+    </a>
+  </div>
+</div>
+
+<p><%= t(:id) %>: <%= @operator.id  %></p>
+
+<p><%= t(:name) %>: <%= @operator.name  %></p>
+
+<p><%= t(:created_at) %>: <%= @operator.created_at  %></p>
+
+<p><%= t(:updated_at) %>: <%= @operator.updated_at  %></p>
+
+
+<h4><%= t(:assigned_addresses) %></h4>
+
+<div class="table-responsive">
+	<table class="table table-striped table-hover table-bordered">
+	  <tbody>
+			<tr>
+				<th><%= t(:mac_address) %></th>
+				<th><%= t(:ip) %></th>
+				<th><%= t(:hostname) %></th>
+			</tr>
+			<% @operator.assigned_addresses.each do |assigned_address| %>
+				<tr>
+					<td>
+						<%= link_to assigned_address.mac, assigned_address_path(assigned_address.id) %>
+						</td>
+					<td><%= assigned_address.address.ip_address %></td>
+					<td><%= assigned_address.hostname %></td>
+			  </tr>
+			<% end %>
+	  </tbody>
+	</table>
+</div>

@@ -1,28 +1,17 @@
 <div class="page-header clearfix">
   <div class="pull-left">
-    <h1>Show user</h1>
+    <h1>Editing user <%= @user.name %></h1>
   </div>
   <div class="pull-right btn-header">
     <a href="<%= users_path %>" class="btn btn-default">
       <span class="glyphicon glyphicon-arrow-left"></span>
       Back
     </a>
-    <a href="<%= edit_user_path @user %>" class="btn btn-default">
+    <a href="<%= user_path @user %>" class="btn btn-default">
       <span class="glyphicon glyphicon-eye-open"></span>
-      Edit
+      Show
     </a>
   </div>
 </div>
 
-
-<p>Name: <%= @user.name if @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
-
-
-<h4><%= t(:roles) %></h4>
-
-<ul>
-	<% @user.roles.each do |role| %>
-  	<li><%= role.name %></li>
-	<% end %>
-</ul>
+<%= render 'form' %>

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root to: 'visitors#index'
+  
   devise_for :users
-  resources :users
+  scope "/admin" do
+    resources :users
+    resources :roles
+  end
   
   resources :operators
   

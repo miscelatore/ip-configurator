@@ -32,6 +32,7 @@
 				<th><%= t(:mac_address) %></th>
 				<th><%= t(:ip) %></th>
 				<th><%= t(:hostname) %></th>
+				<th><%= t(:domain) %></th>
 			</tr>
 			<% @operator.assigned_addresses.each do |assigned_address| %>
 				<tr>
@@ -40,6 +41,7 @@
 						</td>
 					<td><%= assigned_address.address.ip_address %></td>
 					<td><%= assigned_address.hostname %></td>
+					<td><%= assigned_address.address.network.dns_zone %></td>
 			  </tr>
 			<% end %>
 	  </tbody>

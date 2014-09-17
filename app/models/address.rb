@@ -17,9 +17,7 @@ class Address < ActiveRecord::Base
     errors.add(:address, 'is assigned') if self.assigned_address
   end
   
-  #TODO: definire in callbacks per popolare il campo value con l'ultimo ottetto dell'IP address
   before_save :make_value
-  
   
   
   # #getter

@@ -1,0 +1,27 @@
+<div class="page-header clearfix">
+  <div class="pull-left">
+    <h1>Show role</h1>
+  </div>
+  <div class="pull-right btn-header">
+    <a href="<%= roles_path %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+      Back
+    </a>
+    <a href="<%= edit_role_path @role %>" class="btn btn-default">
+      <span class="glyphicon glyphicon-eye-open"></span>
+      Edit
+    </a>
+  </div>
+</div>
+
+
+<p>Name: <%= @role.name if @role.name %></p>
+
+
+<h4><%= t(:users) %></h4>
+
+<ul>
+	<% @role.users.each do |user| %>
+  	<li><%= user.email %></li>
+	<% end %>
+</ul>

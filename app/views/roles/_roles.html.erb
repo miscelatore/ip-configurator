@@ -1,0 +1,31 @@
+<table class="table table-striped table-bordered">
+  <tbody>
+		<tr>
+			<th>Id</th>
+			<th><%= sort_link @q, :name, t(:name) %></th>
+			<th><%= t(:created_at) %></th>
+			<th><%= t(:updated_at) %></th>
+			<th><%= t(:action) %></th>
+		</tr>
+    <% @roles.each do |role| %>
+			<tr>
+        <td><%= link_to role.id, role %></td>
+				<td><%= role.name %></td>
+				<td><%= role.created_at %></td>
+				<td><%= role.updated_at %></td>
+				<td>
+					<div class="btn-group">
+						<a class="btn dropdown-toggle btn-primary action-btn btn-sm" href="#" data-toggle="dropdown">
+					 		<%= t('action') %>
+							<span class="caret"></span>
+					 	</a>
+					<ul class="dropdown-menu">
+					    <li><%= link_to t('show'), role %></li>
+					    <li><%= link_to t('edit'), edit_role_path(role) %></li>
+					</ul>
+					</div>
+				</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

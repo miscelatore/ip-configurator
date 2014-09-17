@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :roles
   
+  has_and_belongs_to_many :roles
   has_many :networks
   has_many :addresses
   has_many :assigned_addresses
@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   has_many :location_ports
     
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  # :confirmable, :lockable, :timeoutable and :omniauthable, :registerable,
+  devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
          
   def role?(role)
@@ -19,8 +19,9 @@ class User < ActiveRecord::Base
   end
   
   # validates_presence_of :username
-  validates_presence_of :email
+  #validates_presence_of :email
   validates :password, :presence     => true, 
                        :confirmation => true,
                        :on => :create
+
 end

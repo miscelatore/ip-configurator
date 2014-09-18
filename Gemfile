@@ -18,6 +18,12 @@ gem 'ruby-ip'
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
 gem 'kaminari-bootstrap', '~> 0.1.3'
 gem 'kaminari'
+gem 'rails-i18n', '~> 4.0.0'
+
+group :assets do
+  gem 'execjs'
+  gem 'therubyracer', platform: :ruby
+end
 
 #gem 'delayed_job_active_record'
 #gem "delayed_job_web"

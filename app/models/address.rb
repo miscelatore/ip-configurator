@@ -38,9 +38,9 @@ class Address < ActiveRecord::Base
   
   def toString
     if self.assigned_address
-      return "#{ip_address} (assegnato)"
+      return "#{ip_address} (" + I18n.t(:assigned) + ")"
     elsif self.reserved
-      return "#{ip_address} (riservato)"
+      return "#{ip_address} (" + I18n.t(:reserved) + ")"
     else
       return "#{ip_address}"
     end

@@ -147,6 +147,10 @@ class ConfiguratorServices
       rescue Errno::ENOENT => e
         exit_code = 1
         Rails.logger.info("Exception ENOENT occurred")
+        raise e
+      rescue Errno::EPERM => e
+        exit_code = 1
+        Rails.logger.info("Exception EPERM occurred: #{e}")
         raise e  
       rescue Exception => e
         exit_code = 1

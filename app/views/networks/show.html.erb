@@ -35,11 +35,24 @@
 			<tr>
 				<th><%= t(:ip) %></th>
 				<th><%= t(:reserverd) %></th>
+				<th><%= t(:action) %></th>
 			</tr>
-			<% @network.addresses.each do |address| %>
+			<% @network.addresses.sorted.each do |address| %>
 				<tr>
 					<td><%= address.toString %></td>
 					<td><%= address.reserved %></td>
+					<td>
+						<div class="btn-group">
+							<a class="btn dropdown-toggle btn-primary action-btn btn-sm" href="#" data-toggle="dropdown">
+						 		<%= t('action') %>
+								<span class="caret"></span>
+						 	</a>
+						<ul class="dropdown-menu">
+						    <li><%= link_to t('show'), address %></li>
+						    <li><%= link_to t('edit'), edit_address_path(address) %></li>
+						</ul>
+						</div>
+					</td>
 			  </tr>
 			<% end %>
 	  </tbody>

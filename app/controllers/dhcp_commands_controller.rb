@@ -10,7 +10,7 @@ class DhcpCommandsController < ApplicationController
         format.html { redirect_to root_path, notice: 'DHCP configuration was successfully created.' }
         #format.json { render action: 'show', status: :created, location: root_path }
       else
-        format.html { redirect_to root_path, notice: 'DHCP configuration was unsuccessfully created.' }
+        format.html { redirect_to root_path, alert: 'DHCP configuration was unsuccessfully created. See logfile for details.' }
         #format.json { render json: root_path.errors, status: :unprocessable_entity }
       end
     end
@@ -23,7 +23,7 @@ class DhcpCommandsController < ApplicationController
         format.html { redirect_to root_path, notice: 'DHCP service was successfully restartd.' }
         #format.json { render action: 'show', status: :created, location: root_path }
       else
-        format.html { redirect_to root_path, notice: 'Error restarting DHCP service.' }
+        format.html { redirect_to root_path, alert: 'Error restarting DHCP service. See logfile for details' }
         #format.json { render json: visitors_path.errors, status: :unprocessable_entity }
       end
     end

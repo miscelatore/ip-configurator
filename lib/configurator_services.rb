@@ -142,23 +142,23 @@ class ConfiguratorServices
       
       rescue Timeout::Error => e
         exit_code = 1
-        Rails.logger.info("Time out command")
-        raise e
+        Rails.logger.info("Time out command: #{e}")
+        #raise e
       rescue Errno::ENOENT => e
         exit_code = 1
-        Rails.logger.info("Exception ENOENT occurred")
-        raise e
+        Rails.logger.info("Exception ENOENT occurred: #{e}")
+        #raise e
       rescue Errno::EPERM => e
         exit_code = 1
         Rails.logger.info("Exception EPERM occurred: #{e}")
-        raise e  
+        #raise e  
       rescue Exception => e
         exit_code = 1
-        Rails.logger.info("Exception occured")
-        raise e
+        Rails.logger.info("Exception occured: #{e}")
+        #raise e
     end
     
-    Rails.logger.debug("Esito del comando: #{exit_code}")
+    Rails.logger.debug("SaveConfiguration exit code: #{exit_code}")
    
     
     return exit_code
@@ -181,15 +181,15 @@ class ConfiguratorServices
       
       rescue SystemCallError => e
         exit_code = 1
-        Rails.logger.info("Command couldn’t execute")
-        raise e
+        Rails.logger.info("Command couldn’t execute: #{e}")
+        #raise e
       rescue Exception => e
         exit_code = 1
-        Rails.logger.info("EXCEPTION")
-        raise e
+        Rails.logger.info("EXCEPTION: #{e}")
+        #raise e
     end
   
-    Rails.logger.debug("Esito del comando: #{exit_code}")
+    Rails.logger.debug("RestartDhcpd exit code: #{exit_code}")
 
     return exit_code
      

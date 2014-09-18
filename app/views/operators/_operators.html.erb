@@ -22,6 +22,7 @@
 					<ul class="dropdown-menu">
 					    <li><%= link_to t('show'), operator %></li>
 					    <li><%= link_to t('edit'), edit_operator_path(operator) %></li>
+							<li><%= link_to t('destroy'), operator, method: :delete, data: { confirm: t(:are_you_sure) } %></li>
 					</ul>
 					</div>
 				</td>

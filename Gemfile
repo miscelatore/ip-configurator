@@ -19,6 +19,8 @@ gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
 gem 'kaminari-bootstrap', '~> 0.1.3'
 gem 'kaminari'
 gem 'rails-i18n', '~> 4.0.0'
+gem 'devise-i18n'
+gem 'kaminari-i18n'
 
 group :assets do
   gem 'execjs'

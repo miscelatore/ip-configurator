@@ -28,6 +28,7 @@
 					<ul class="dropdown-menu">
 					    <li><%= link_to t('show'), network %></li>
 					    <li><%= link_to t('edit'), edit_network_path(network) %></li>
+							<li><%= link_to t('destroy'), network, method: :delete, data: { confirm: t(:are_you_sure) } %></li>
 					</ul>
 					</div>
 				</td>

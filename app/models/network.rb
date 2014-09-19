@@ -34,7 +34,7 @@ class Network < ActiveRecord::Base
   validates :gateway, presence: true, format: { with: Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex), message: "Not a valid IPaddr format"}
   validates :netmask, presence: true, format: { with: /\A(((128|192|224|240|248|252|254)\.0\.0\.0)|(255\.(0|128|192|224|240|248|252|254)\.0\.0)|(255\.255\.(0|128|192|224|240|248|252|254)\.0)|(255\.255\.255\.(0|128|192|224|240|248|252|254)))\z/i }
   validates :server_dns, presence: true, nameservers: true
-  validates :dns_zone, presence: true, domain_name: true, uniqueness: true
+  validates :dns_zone, presence: true, domain_name: true
   
   after_create :create_addresses
   after_update :upd_dhcp_configuration

@@ -3,7 +3,7 @@ require 'resolv'
 
 class NameserversValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    value.split(/[\,\s]\s*/).each do |ns|
+    value.split(/[\,\s*/).each do |ns|
       unless ns =~ (Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex))
         record.errors[attribute] << (options[:message] || "is not a valid IPaddr format")
       end
@@ -39,12 +39,8 @@ class Network < ActiveRecord::Base
   after_create :create_addresses
   after_update :upd_dhcp_configuration
   
-  #TODO: gestire via before_update l'aggionamento degli addresses
-  #TODO: gestire via after_update il salvataggio della nuova configurazione DHCP
+  #TODO: update of addresses by before_update callbacks
   
-  
-  
-
   
   private
   

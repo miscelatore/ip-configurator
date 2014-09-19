@@ -3,7 +3,7 @@ require 'resolv'
 
 class NameserversValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    value.split(/[\,\s*/).each do |ns|
+    value.split(/\,\s*/).each do |ns|
       unless ns =~ (Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex))
         record.errors[attribute] << (options[:message] || "is not a valid IPaddr format")
       end

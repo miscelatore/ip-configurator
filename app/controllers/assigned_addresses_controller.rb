@@ -2,8 +2,12 @@ class AssignedAddressesController < ApplicationController
 
   before_filter :authenticate_user!
   
+  autocomplete :address, :ip_address, :full => true, :display_value => :toString, :extra_data => [:reserved], :scopes => [:sorted], :limit => 20
+  
   before_action :set_assigned_address, only: [:show, :edit, :update, :destroy]
   before_action :clear_search_index, only: [:index]
+  
+  
 
   # GET /assigned_addresses
   # GET /assigned_addresses.json

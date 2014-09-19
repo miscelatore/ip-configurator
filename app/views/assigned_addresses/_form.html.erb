@@ -14,7 +14,8 @@
 	<div class="form-group">
     <%= f.label :address_id, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-			<%= f.select(:address_id, Address.all.sorted.collect {|a| [a.toString, a.id]}, {:include_blank => true, :selected => @assigned_address.address_id }, class: 'form-control' ) %>
+			<%= f.hidden_field :address_id %>
+			<%= f.autocomplete_field :address_ip_address, autocomplete_address_ip_address_assigned_addresses_path, :update_elements => {:id => '#assigned_address_address_id'} %>
     </div>
 	</div>
 	<div class="form-group">
@@ -26,13 +27,13 @@
 	<div class="form-group">
     <%= f.label :hardware_id, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-			<%= f.select(:hardware_id, Hardware.all.collect {|hw| [hw.name, hw.id]}, {:include_blank => true, :selected => @assigned_address.hardware_id }, class: 'form-control' ) %>
+			<%= f.select(:hardware_id, Hardware.all.sorted.collect {|hw| [hw.name, hw.id]}, {:include_blank => true, :selected => @assigned_address.hardware_id }, class: 'form-control' ) %>
     </div>
 	</div>
 	<div class="form-group">
     <%= f.label :operator_id, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-			<%= f.select(:operator_id, Operator.all.collect {|op| [op.name, op.id]}, {:include_blank => true, :selected => @assigned_address.operator_id }, class: 'form-control' ) %>	
+			<%= f.select(:operator_id, Operator.all.sorted.collect {|op| [op.name, op.id]}, {:include_blank => true, :selected => @assigned_address.operator_id }, class: 'form-control' ) %>	
     </div>
 	</div>
   <div class="form-group">
@@ -50,7 +51,7 @@
   <div class="form-group">
     <%= f.label :location_port_id, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-			<%= f.select(:location_port_id, LocationPort.all.collect {|lp| [lp.name, lp.id]}, {:include_blank => true, :selected => @assigned_address.location_port_id }, class: 'form-control' ) %>	
+			<%= f.select(:location_port_id, LocationPort.all.sorted.collect {|lp| [lp.toString, lp.id]}, {:include_blank => true, :selected => @assigned_address.location_port_id }, class: 'form-control' ) %>	
     </div>
 	</div>
   <div class="form-group">

@@ -8,7 +8,10 @@ class AssignedAddress < ActiveRecord::Base
   belongs_to :hardware
   belongs_to :location_port
   
-  scope :actice, -> { where(enabled: true) }
+  
+  delegate :ip_address, to: :address, prefix: true, allow_nil: true
+  
+  scope :active, -> { where(enabled: true) }
   
   validates :mac, presence: true, uniqueness: true, format: { with: /([0-9a-f]{2}:){5}[0-9a-f]{2}/ }
   validates :hostname, presence: true, uniqueness: true, format: { with: /[a-z0-9]+(:?[-a-z0-9]*[a-z0-9]+)?/i }

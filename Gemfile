@@ -21,6 +21,8 @@ gem 'kaminari'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'devise-i18n'
 gem 'kaminari-i18n'
+gem 'rails4-autocomplete'
+gem 'jquery-ui-rails'
 
 group :assets do
   gem 'execjs'

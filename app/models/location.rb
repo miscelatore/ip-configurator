@@ -4,5 +4,9 @@ class Location < ActiveRecord::Base
   belongs_to :user
   has_many :location_ports
   accepts_nested_attributes_for :location_ports, reject_if: lambda { |a| a[:name].blank? },  allow_destroy: true
+  
+  scope :sorted, -> { order(:name) }
+  
+  validates :name, presence: true
 
 end

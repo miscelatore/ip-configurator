@@ -103,13 +103,13 @@ class AssignedAddressesController < ApplicationController
             end
           else
             params[:q] = Hash.new
-            params[:q][:hostname_cont]    ||= session[:hostname]
-            params[:q][:mac_cont]         ||= session[:mac]
-            params[:q][:address_ip_address_cont]    ||= session[:address]
-            params[:q][:operator]   ||= session[:operator_name_cont]
-            params[:q][:hardware_id_eq]   ||= session[:hardware_id]
-            params[:q][:enabled_eq]       ||= session[:enabled]
-            params[:q][:description_cont] ||= session[:description]
+            params[:q][:hostname_cont]            ||= session[:hostname]
+            params[:q][:mac_cont]                 ||= session[:mac]
+            params[:q][:address_ip_address_cont]  ||= session[:address]
+            params[:q][:operator_name_cont]       ||= session[:operator]
+            params[:q][:hardware_id_eq]           ||= session[:hardware_id]
+            params[:q][:enabled_eq]               ||= session[:enabled]
+            params[:q][:description_cont]         ||= session[:description]
           end
       
       params[:q]

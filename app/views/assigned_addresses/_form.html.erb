@@ -15,13 +15,13 @@
     <%= f.label :address_id, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
 			<%= f.hidden_field :address_id %>
-			<%= f.autocomplete_field :address_ip_address, autocomplete_address_ip_address_assigned_addresses_path, :update_elements => {:id => '#assigned_address_address_id'} %>
+			<%= f.select(:address_id, Address.all.sorted.collect {|addr| [addr.ip_address, addr.id]}, {:include_blank => true, :selected => @assigned_address.address_id }, class: 'form-control' ) %>
     </div>
 	</div>
 	<div class="form-group">
     <%= f.label :hostname, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-      <%= f.text_field :hostname, class: 'form-control' %>
+      <%= f.text_field :hostname, class: 'form-control' %> <%= '.' + @assigned_address.address.network.dns_zone if !@assigned_address.new_record? %>
     </div>
 	</div>
 	<div class="form-group">

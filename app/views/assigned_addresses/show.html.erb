@@ -8,21 +8,36 @@
       Back
     </a>
     <a href="<%= edit_assigned_address_path @assigned_address %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-eye-open"></span>
+      <span class="glyphicon glyphicon-edit"></span>
       Edit
     </a>
   </div>
 </div>
 
-<p><%= t(:address) %>: <%= @assigned_address.address.ip_address %></p>
-<p><%= t(:hostname) %>: <%= @assigned_address.hostname  %></p>
-<p><%= t(:hardware_type) %>: <%= @assigned_address.hardware.name  %></p>
-<p><%= t(:operator) %>: <%= @assigned_address.operator.name  %></p>
-<p><%= t(:mac_address) %>: <%= @assigned_address.mac  %></p>
-<p><%= t(:description) %>: <%= @assigned_address.description  %></p>
-<p><%= t(:location_port_id) %>: <%= @assigned_address.location_port.name if @assigned_address.location_port %></p>
-<p><%= t(:enabled) %>: <%= @assigned_address.enabled  %></p>
-<p><%= t(:created_at) %>: <%= @assigned_address.created_at  %></p>
-<p><%= t(:updated_at) %>: <%= @assigned_address.updated_at  %></p>
-
-
+<div class="panel panel-default">
+	<div class="panel-heading"><%= t(:operator) %>: <%= @assigned_address.operator.name  %></div>
+  <div class="panel-body">
+		<dl class="dl-horizontal lead">
+		  <dt><%= t(:address) %>:</dt>
+		  <dd><%= @assigned_address.address.ip_address %></dd>
+			<dt><%= t(:hostname) %>:</dt>
+			<dd><%= @assigned_address.hostname %>.<%= @assigned_address.address.network.dns_zone %></dd>
+			<dt><%= t(:hardware_type) %>:</dt>
+			<dd><%= @assigned_address.hardware.name %></dd>
+			<dt><%= t(:operator) %>:</dt>
+			<dd><%= @assigned_address.operator.name %></dd>
+			<dt><%= t(:mac_address) %>:</dt>
+			<dd><%= @assigned_address.mac %></dd>
+			<dt><%= t(:description) %>:</dt>
+			<dd><%= @assigned_address.description %></dd>
+			<dt><%= t(:location_port_id) %>:</dt>
+			<dd><%= @assigned_address.location_port.name if @assigned_address.location_port %></dd>
+			<dt><%= t(:enabled) %>:</dt>
+			<dd><%= @assigned_address.enabled %></dd>
+			<dt><%= t(:created_at) %>:</dt>
+			<dd><%= @assigned_address.created_at %></dd>
+			<dt><%= t(:updated_at) %>:</dt>
+			<dd><%= @assigned_address.updated_at %></dd>			
+		</dl>
+  </div>
+</div>

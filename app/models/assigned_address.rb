@@ -17,13 +17,12 @@ class AssignedAddress < ActiveRecord::Base
   validates :hostname, presence: true, uniqueness: true, format: { with: /[a-z0-9]+(:?[-a-z0-9]*[a-z0-9]+)?/i }
   validates :operator, presence: true
   validates :address, presence: true, uniqueness: true
-  validate :address_reserved
+  #validate :address_reserved
 
-  def address_reserved
-    errors.add(:address, 'is reserved') if self.address.reserved
-  end
+  # def address_reserved
+  #   errors.add(:address, 'is reserved') if self.address.reserved 
+  # end
   
-  #TODO: da inserire callback per generazione della configurazione in caso di create, update, destroy entry
   after_create :upd_dhcp_configuration
   after_update :upd_dhcp_configuration
   after_destroy :upd_dhcp_configuration

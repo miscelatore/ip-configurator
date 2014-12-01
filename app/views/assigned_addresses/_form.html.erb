@@ -15,7 +15,7 @@
     <%= f.label :address_id, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
 			<%= f.hidden_field :address_id %>
-			<%= f.select(:address_id, Address.all.sorted.collect {|addr| [addr.ip_address, addr.id]}, {:include_blank => true, :selected => @assigned_address.address_id }, class: 'form-control' ) %>
+			<%= f.select(:address_id, Address.unassigned.sorted.collect {|addr| [addr.ip_address, addr.id]}, {:include_blank => true, :selected => @assigned_address.address_id }, class: 'form-control' ) %>
     </div>
 	</div>
 	<div class="form-group">

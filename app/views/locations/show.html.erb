@@ -14,19 +14,39 @@
   </div>
 </div>
 
-<p><%= t(:id) %>: <%= @location.id  %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+		<dl class="dl-horizontal lead">
+		  <dt><%= t(:id) %>:</dt>
+		  <dd><%= @location.id  %></dd>
+		  <dt><%= t(:name) %>:</dt>
+		  <dd><%= @location.name  %></dd>
+		  <dt><%= t(:created_at) %>:</dt>
+		  <dd><%= @location.created_at  %></dd>
+		  <dt><%= t(:updated_at) %>:</dt>
+		  <dd><%= @location.updated_at  %></dd>
+		</dl>
+ </div>
+</div>
 
-<p><%= t(:name) %>: <%= @location.name  %></p>
-
-<p><%= t(:created_at) %>: <%= @location.created_at  %></p>
-
-<p><%= t(:updated_at) %>: <%= @location.updated_at  %></p>
-
-<h4><%= t(:ports) %></h4>
-
-<ul>
-	<% @location.location_ports.each do |lp| %>
-  	<li><%= lp.name %></li>
-	<% end %>
-</ul>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-info">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <h4 class="panel-title"><%= t(:ports) %><span class="caret"></span></h4>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+				<ul>
+					<% @location.location_ports.each do |lp| %>
+				  	<li><%= lp.name %></li>
+					<% end %>
+				</ul>
+      </div>
+    </div>
+  </div>
+</div>
 

@@ -29,10 +29,12 @@ class ConfiguratorServices
       new_dhcp_config << "  option subnet-mask " + n.netmask + ";\n"
       new_dhcp_config << "  option domain-name-servers " + n.server_dns + ";\n"
       new_dhcp_config << "  option domain-name \"" + n.dns_zone + "\";\n"
-      new_dhcp_config << "  option netbios-name-servers 192.12.192.57;\n"
-      new_dhcp_config << "  option netbios-node-type 2;\n"
-      new_dhcp_config << "  default-lease-time 43200;\n"
-      new_dhcp_config << "  max-lease-time 86400;\n"
+      if !n.netbios_name_servers.nil?
+        new_dhcp_config << "  option netbios-name-servers " + n.netbios_name_servers + ";\n"
+        new_dhcp_config << "  option netbios-node-type " + n.netbios_node_type + ";\n"
+      end
+      new_dhcp_config << "  default-lease-time " + n.default_lease_time + ";\n"
+      new_dhcp_config << "  max-lease-time " + n.max_lease_time + ";\n"
       new_dhcp_config << "}\n\n"
     end
     new_dhcp_config << "}\n\n"

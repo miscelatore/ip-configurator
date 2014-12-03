@@ -14,10 +14,17 @@
   </div>
 </div>
 
-<p><%= t(:id) %>: <%= @hardware.id  %></p>
-
-<p><%= t(:name) %>: <%= @hardware.name  %></p>
-
-<p><%= t(:created_at) %>: <%= @hardware.created_at  %></p>
-
-<p><%= t(:updated_at) %>: <%= @hardware.updated_at  %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+		<dl class="dl-horizontal lead">
+		  <dt><%= t(:id) %>:</dt>
+		  <dd><%= @hardware.id  %></dd>
+		  <dt><%= t(:name) %>:</dt>
+		  <dd><%= @hardware.name  %></dd>
+		  <dt><%= t(:created_at) %>:</dt>
+		  <dd><%= @hardware.created_at  %></dd>
+		  <dt><%= t(:updated_at) %>:</dt>
+		  <dd><%= @hardware.updated_at  %></dd>
+		</dl>
+ </div>
+</div>

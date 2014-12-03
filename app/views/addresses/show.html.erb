@@ -14,9 +14,27 @@
   </div>
 </div>
 
-<p>IP: <%= @address.ip_address if @address.ip_address %></p>
-<p>Rete: <%= @address.network.name if @address.network %></p>
-<p>Riservato: <%= @address.reserved %></p>
-<p>Assegnato a: <%= @address.assigned_address.operator.name if @address.assigned_address %></p>
-<p><%= t(:created_at) %>: <%= @address.created_at  %></p>
-<p><%= t(:updated_at) %>: <%= @address.updated_at  %></p>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+		<dl class="dl-horizontal lead">
+		  <dt>IP:</dt>
+		  <dd><%= @address.ip_address if @address.ip_address %></dd>
+			
+			<dt>Rete:</dt>
+		  <dd><%= @address.network.name if @address.network %></dd>
+
+			<dt>Riservato:</dt>
+		  <dd><%= @address.reserved %></dd>
+
+			<dt>Assegnato a:</dt>
+		  <dd><%= @address.assigned_address.operator.name if @address.assigned_address %></dd>
+
+			<dt><%= t(:created_at) %>:</dt>
+		  <dd><%= @address.created_at  %></dd>
+
+			<dt><%= t(:updated_at) %>:</dt>
+		  <dd><%= @address.updated_at  %></dd>	
+		</dl>
+ </div>
+</div>

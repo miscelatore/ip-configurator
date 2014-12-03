@@ -20,9 +20,24 @@
 							<span class="caret"></span>
 					 	</a>
 					<ul class="dropdown-menu">
-					    <li><%= link_to t('show'), operator %></li>
-					    <li><%= link_to t('edit'), edit_operator_path(operator) %></li>
-							<li><%= link_to t('destroy'), operator, method: :delete, data: { confirm: t(:are_you_sure) } %></li>
+							<li>
+								<%= link_to operator do %>
+									<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+									<%= t('show') %>
+								<% end %>
+							</li>
+					    <li>
+								<%= link_to edit_operator_path(operator) do %>
+									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+									<%= t('edit') %>
+								<% end %>
+							</li>
+							<li>
+								<%= link_to operator, method: :delete, data: { confirm: t(:are_you_sure) } do %>
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									<%= t('destroy') %>
+								<% end %>
+							</li>
 					</ul>
 					</div>
 				</td>

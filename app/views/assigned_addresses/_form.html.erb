@@ -15,14 +15,17 @@
     <%= f.label :address_id, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
 			<%= f.hidden_field :address_id %>
-			<%= f.select(:address_id, Address.unassigned.sorted.collect {|addr| [addr.ip_address, addr.id]}, {:include_blank => true, :selected => @assigned_address.address_id }, class: 'form-control' ) %>
+			<%= f.select(:address_id, Address.sorted.collect {|addr| [addr.toString, addr.id]}, {:include_blank => true, :selected => @assigned_address.address_id }, class: 'form-control' ) %>
     </div>
 	</div>
 	<div class="form-group">
-    <%= f.label :hostname, class: "col-sm-2 control-label" %>
+   	<%= f.label :hostname, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-      <%= f.text_field :hostname, class: 'form-control' %> <%= '.' + @assigned_address.address.network.dns_zone if !@assigned_address.new_record? %>
-    </div>
+			<div class="input-group">
+      	<%= f.text_field :hostname, class: 'form-control' %>
+ 				<span class="input-group-addon"><%= '.' + @assigned_address.address.network.dns_zone if !@assigned_address.new_record? %></span>
+ 			</div>
+		</div>
 	</div>
 	<div class="form-group">
     <%= f.label :hardware_id, class: "col-sm-2 control-label" %>

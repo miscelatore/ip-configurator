@@ -8,7 +8,7 @@ class Address < ActiveRecord::Base
   has_one    :assigned_address, dependent: :destroy
   
   scope :sorted, -> { order(:network_id, :value) }
-  scope :unassigned, -> { where( 'id not in (select address_id from assigned_address)' ) }
+  #scope :unassigned, -> { where( 'id not in (select address_id from assigned_address) OR id in (select address_id from assigned_address where address_id <> id)' ) }
   
   validates :ip_address, uniqueness: true
   validates :network, presence: true

@@ -1,16 +1,16 @@
-<%= search_form_for @q, url: hardwares_path, :method => :get do |f| %>
-	<table border="0" width="98%" align="center">
-		<tr>
-			<td>
-	    		<%= f.label :name_cont, t('name') %><br />
-	    		<%= f.text_field :name_cont %>
-	  	</td>
-			<td rowspan="2" align="center">
-	    		<div class="actions col-md-offset-2">
-				    <%= f.submit class: 'btn btn-default' %>
-				  </div>
-	  	</td>
-		</tr>
-	</table>
-<% end %>
-<hr>
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t('search_options')%></h3>
+  </div>
+  <div class="panel-body">
+		<%= search_form_for( @q, url: hardwares_path, :method => :get, html: { class: "form-inline", role: "form" }) do |f| %>
+					<div class="form-group">
+		    		<%= f.label :name_cont, t('name') %>
+		    		<%= f.text_field :name_cont, :class => "form-control" %>
+			  	</div>
+					<div class="form-group"> 		
+						<%= f.submit class: 'btn btn-warning' %>
+			  	</div>
+		<% end %>
+	</div>
+</div>

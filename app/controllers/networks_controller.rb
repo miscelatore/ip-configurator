@@ -70,7 +70,10 @@ class NetworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def network_params
-      params.require(:network).permit(:name, :dhcp_enabled, :gateway, :netmask, :server_address, :space, :start_address, :dns_zone, :server_dns, :pxefile)
+      params.require(:network).permit(:name, :dhcp_enabled, :gateway, :netmask, :server_address, 
+                                      :space, :start_address, :dns_zone, :server_dns, :pxefile, 
+                                      :default_lease_time, :max_lease_time, :netbios_name_servers, 
+                                      :netbios_node_type)
     end
 
     def search_params

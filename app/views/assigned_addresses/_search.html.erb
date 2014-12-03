@@ -3,45 +3,34 @@
     <h3 class="panel-title"><%= t('search_options')%></h3>
   </div>
   <div class="panel-body">
-		<%= search_form_for @q, url: assigned_addresses_path, :method => :get do |f| %>
-			<table border="0" width="98%" align="left">
-				<tr>
-					<td>
-		    		<%= f.label :hostname_cont, t('hostname') %><br />
-		    		<%= f.text_field :hostname_cont, :value => session[:hostname] %>
-			  	</td>
-					<td>
-		    		<%= f.label :mac_cont, t('mac') %><br />
-		    		<%= f.text_field :mac_cont, :value => session[:mac] %>
-			  	</td>
-					<td>
-		    		<%= f.label :description_cont, t('description') %><br />
-		    		<%= f.text_field :description_cont, :value => session[:description] %>
-			  	</td>
-					<td>
-					  <%= f.label :address_ip_address_cont, t('address') %><br />
-						<%= f.text_field :address_ip_address_cont, :value => session[:address] %>
-					</td>
-					<td>
-					  <%= f.label :operator_name_cont, t('operator') %><br />
-						<%= f.text_field :operator_name_cont, :value => session[:operator] %>
-					</td>
-					<td>
-			    	<%= f.label :enabled_eq, t('enabled') %><br />
-						<%= f.select(:enabled_eq, %w{true false}, {:include_blank => true, :selected => session[:enabled] } ) %>
-			  	</td>
-					<td>
-					  <%= f.label :hardware_id_eq, t('hardware') %><br />
-						<%= f.select(:hardware_id_eq, Hardware.all.collect {|hw| [hw.name, hw.id]}, {:include_blank => true, :selected => session[:hardware_id] } ) %>
-					</td>
-			
-					<td rowspan="2" align="center">
-			    		<div class="actions col-md-offset-2">
-						    <%= f.submit class: 'btn btn-warning' %>
-						  </div>
-			  	</td>
-				</tr>
-			</table>
+		<%= search_form_for( @q, url: assigned_addresses_path, :method => :get, html: { class: "form-inline", role: "form" }) do |f| %>
+			<div class="form-group">
+			    <%= f.label :hostname_cont, t('hostname') %><br />
+			    <%= f.text_field :hostname_cont, :value => session[:hostname], :class => "form-control" %>
+			</div>
+			<div class="form-group">
+    		<%= f.label :mac_cont, t('mac') %><br />
+    		<%= f.text_field :mac_cont, :value => session[:mac], :class => "form-control" %>
+	  	</div>
+			<div class="form-group">
+			  <%= f.label :address_ip_address_cont, t('address') %><br />
+				<%= f.text_field :address_ip_address_cont, :value => session[:address], :class => "form-control" %>
+			</div>
+			<div class="form-group">
+			  <%= f.label :operator_name_cont, t('operator') %><br />
+				<%= f.text_field :operator_name_cont, :value => session[:operator], :class => "form-control" %>
+			</div>
+			<div class="form-group">
+	    	<%= f.label :enabled_eq, t('enabled') %><br />
+				<%= f.select(:enabled_eq, %w{true false}, {:include_blank => true, :selected => session[:enabled] }, :class => "form-control" ) %>
+	  	</div>
+			<div class="form-group">
+			  <%= f.label :hardware_id_eq, t('hardware') %><br />
+				<%= f.select(:hardware_id_eq, Hardware.all.collect {|hw| [hw.name, hw.id]}, {:include_blank => true, :selected => session[:hardware_id] }, :class => "form-control" ) %>
+			</div>
+			<div class="form-group pull-right">
+				<%= f.submit class: 'btn btn-warning' %>
+			</div>
 		<% end %>
 	</div>
 </div>

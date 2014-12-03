@@ -20,8 +20,18 @@
 							<span class="caret"></span>
 					 	</a>
 					<ul class="dropdown-menu">
-					    <li><%= link_to t('show'), location %></li>
-					    <li><%= link_to t('edit'), edit_location_path(location) %></li>
+						<li>
+							<%= link_to location do %>
+								<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+								<%= t('show') %>
+							<% end %>
+						</li>
+				    <li>
+							<%= link_to edit_location_path(location) do %>
+								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+								<%= t('edit') %>
+							<% end %>
+						</li>
 					</ul>
 					</div>
 				</td>

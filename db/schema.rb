@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911060604) do
+ActiveRecord::Schema.define(version: 20141201151444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,18 +84,22 @@ ActiveRecord::Schema.define(version: 20140911060604) do
   end
 
   create_table "network", force: true do |t|
-    t.datetime "created_at",                null: false
-    t.boolean  "dhcp_enabled",              null: false
-    t.string   "gateway",                   null: false
+    t.datetime "created_at",                             null: false
+    t.boolean  "dhcp_enabled",                           null: false
+    t.string   "gateway",                                null: false
     t.datetime "updated_at"
-    t.string   "name",                      null: false
-    t.string   "netmask",                   null: false
-    t.string   "server_dns",                null: false
-    t.integer  "space",                     null: false
-    t.string   "start_address",             null: false
+    t.string   "name",                                   null: false
+    t.string   "netmask",                                null: false
+    t.string   "server_dns",                             null: false
+    t.integer  "space",                                  null: false
+    t.string   "start_address",                          null: false
     t.string   "dns_zone"
     t.string   "pxefile"
-    t.integer  "lock_version",  default: 0, null: false
+    t.integer  "lock_version",         default: 0,       null: false
+    t.string   "default_lease_time",   default: "43200", null: false
+    t.string   "max_lease_time",       default: "86400", null: false
+    t.string   "netbios_name_servers"
+    t.string   "netbios_node_type"
   end
 
   create_table "operator", force: true do |t|

@@ -23,6 +23,7 @@ gem 'devise-i18n'
 gem 'kaminari-i18n'
 gem 'rails4-autocomplete'
 gem 'jquery-ui-rails'
+gem 'whenever', :require => false
 
 group :assets do
   gem 'execjs'

@@ -99,6 +99,9 @@ Rails.application.configure do
   # DHCP config file
   config.dhcp_file = '/var/tmp/dhcp.conf.local'
   
+  # DHCP logfile
+  config.dhcp_logfile = '/var/log/syslog'
+  
   # DHCP restart command
   config.dhcpRestartCommand = 'sudo /usr/bin/service isc-dhcp-server restart'
 end

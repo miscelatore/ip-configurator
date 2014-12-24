@@ -75,7 +75,7 @@ class AssignedAddressesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assigned_address_params
-      params.require(:assigned_address).permit(:description, :enabled, :hostname, :mac, :address_id, :hardware_id, :operator_id, :location_port_id)
+      params.require(:assigned_address).permit(:description, :enabled, :hostname, :mac, :address_id, :hardware_id, :operator_id, :location_port_id, :last_seen_date)
     end
     
     def search_params

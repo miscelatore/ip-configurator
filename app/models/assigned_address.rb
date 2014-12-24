@@ -23,14 +23,17 @@ class AssignedAddress < ActiveRecord::Base
     errors.add(:address, 'is reserved') if self.address.reserved 
   end
   
-  after_create :upd_dhcp_configuration
-  after_update :upd_dhcp_configuration
-  after_destroy :upd_dhcp_configuration
+  #after_create :upd_dhcp_configuration
+  #after_update :upd_dhcp_configuration
+  #after_destroy :upd_dhcp_configuration
   
   
   private
   
   def upd_dhcp_configuration
-    ConfiguratorServices.SaveConfiguration
+    unless self.last_seen_date.nil?
+      Rails.logger.debug("Salvataggio della nuova configurazione!")
+      ConfiguratorServices.SaveConfiguration
+    end
   end
 end

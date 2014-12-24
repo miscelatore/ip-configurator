@@ -55,6 +55,9 @@ Rails.application.configure do
   # DHCP config file
   config.dhcp_file = "#{Rails.root}/tmp/dhcp.conf.local"
   
+  # DHCP logfile
+  config.dhcp_logfile = "#{Rails.root}/tmp/dhcpd_syslog"
+  
   # DHCP  restart command
   config.dhcpRestartCommand = 'echo "I restarted the DHCP service" >> tmp/dhcpRestartCommand'
 end

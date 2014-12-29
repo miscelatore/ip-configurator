@@ -12,12 +12,12 @@ desc "Update last seen IP timestamps."
           t_line_datetime = "#{month} #{day} #{time}"
           last_seen_date = DateTime.parse(t_line_datetime)
           if addr.last_seen_date.nil? || addr.last_seen_date < last_seen_date
-            Rails.logger.debug("Aggiorno il campo last_seen_date!")
+            Rails.logger.debug("Update filed last_seen_date!")
             Rails.logger.debug("IP: #{ip_addr}")
             Rails.logger.debug("MAC: #{mac_address}")
             Rails.logger.debug("Operator: #{addr.operator.name}")
-            Rails.logger.debug("Data file di log: #{t_line_datetime}")
-            Rails.logger.debug("DataTime: #{last_seen_date}")
+            Rails.logger.debug("DateTime logfile: #{t_line_datetime}")
+            Rails.logger.debug("DateTime: #{last_seen_date}")
             Rails.logger.debug('----------------')
             addr.update_attribute(:last_seen_date, last_seen_date)
           end

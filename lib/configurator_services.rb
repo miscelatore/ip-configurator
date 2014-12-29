@@ -43,14 +43,7 @@ class ConfiguratorServices
                 INNER JOIN address ON assigned_address.address_id = address.id 
                 INNER JOIN network ON address.network_id = network.id 
                 WHERE network.dhcp_enabled is true AND assigned_address.enabled is true 
-                ORDER by network.start_address DESC, address.ip ASC" )
-                
-    # #  Daniele Vannozzi hp2420-a23
-    # #  stampante ex marconi
-    # host 192.168.17.129 {
-    #   hardware ethernet 00:12:79:e0:6a:71;
-    #   fixed-address 192.168.17.129;
-    # }            
+                ORDER by network.start_address DESC, address.ip ASC" )           
     
     new_rev_zones = Hash.new
     new_rr_zones = Hash.new

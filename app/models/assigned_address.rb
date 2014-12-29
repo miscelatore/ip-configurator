@@ -12,6 +12,8 @@ class AssignedAddress < ActiveRecord::Base
   delegate :ip_address, to: :address, prefix: true, allow_nil: true
   
   scope :active, -> { where(enabled: true) }
+  scope :no_more_seen, -> { where("last_seen_date < ?", Time.now() - 3.month ) }
+  scope :seen_today, -> { where("last_seen_date > ?", Time.now().to_date  ) }
   
   validates :mac, presence: true, uniqueness: true, format: { with: /([0-9a-f]{2}:){5}[0-9a-f]{2}/ }
   validates :hostname, presence: true, uniqueness: true, format: { with: /[a-z0-9]+(:?[-a-z0-9]*[a-z0-9]+)?/i }

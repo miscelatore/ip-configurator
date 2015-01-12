@@ -15,5 +15,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require bootstrap-datetimepicker
 //= require autocomplete-rails
 //= require_tree .

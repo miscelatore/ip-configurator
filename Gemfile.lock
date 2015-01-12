@@ -48,6 +48,7 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datetimepicker-rails (0.0.11)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
@@ -274,6 +275,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  bootstrap-datetimepicker-rails
   bootstrap-sass
   cancancan (~> 1.9)
   capybara

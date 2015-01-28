@@ -13,5 +13,9 @@
  *= require_tree .
  *= require jquery-ui
  *= require_self
- *= require bootstrap-datetimepicker
  */
+
+// import bootstrap-sprockets before bootstrap if using bootstrap >= 3.2
+@import "bootstrap-sprockets";
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';

@@ -101,8 +101,11 @@ class AssignedAddressesController < ApplicationController
             if !params[:q][:description_cont].nil?
                session[:description] = params[:q][:description_cont].to_s
             end
+            if !params[:q][:last_seen_date_lteq].nil?
+               session[:last_seen_date_before] = params[:q][:last_seen_date_lteq]
+            end
             if !params[:q][:last_seen_date_gteq].nil?
-               session[:last_seen_date] = params[:q][:last_seen_date_gteq]
+               session[:last_seen_date_after] = params[:q][:last_seen_date_gteq]
             end
           else
             params[:q] = Hash.new
@@ -113,7 +116,8 @@ class AssignedAddressesController < ApplicationController
             params[:q][:hardware_id_eq]           ||= session[:hardware_id]
             params[:q][:enabled_eq]               ||= session[:enabled]
             params[:q][:description_cont]         ||= session[:description]
-            params[:q][:last_seen_date_gteq]      ||= session[:last_seen_date]
+            params[:q][:last_seen_date_lteq]      ||= session[:last_seen_date_before]
+            params[:q][:last_seen_date_gteq]      ||= session[:last_seen_date_after]
           end
       
       params[:q]

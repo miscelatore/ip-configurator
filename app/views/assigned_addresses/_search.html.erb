@@ -28,11 +28,25 @@
 			  <%= f.label :hardware_id_eq, t('hardware') %><br />
 				<%= f.select(:hardware_id_eq, Hardware.all.collect {|hw| [hw.name, hw.id]}, {:include_blank => true, :selected => session[:hardware_id] }, :class => "form-control" ) %>
 			</div>
+			
 			<div class="form-group">
-			  <%= f.label :last_seen_date_gteq, t('last_seen_date') %><br />
-				<%= f.text_field :last_seen_date_gteq, :value => session[:last_seen_date], :class => "form-control datepicker" %>
+			  <%= f.label :last_seen_date_gteq, t('last_seen_date_after') %><br />
+				<div class="input-group date" id="datetimepicker_after">
+					<%= f.text_field :last_seen_date_gteq, :size => 10, :value => session[:last_seen_date_after], :class => "form-control" %>
+					<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+				</div>
 			</div>
-			<div class="form-group pull-right">
+			
+			<div class="form-group">
+        <%= f.label :last_seen_date_lteq, t('last_seen_date_before') %><br />
+				<div class="input-group date" id="datetimepicker_before">
+				  <%= f.text_field :last_seen_date_lteq, :size => 10, :value => session[:last_seen_date_before], :class => "form-control" %>
+					<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+				</div>
+      </div>
+
+			<div class="form-group">
+				<br>
 				<%= f.submit class: 'btn btn-warning' %>
 			</div>
 		<% end %>

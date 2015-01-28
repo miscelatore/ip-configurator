@@ -13,8 +13,20 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require turbolinks
+
+//= require moment
 //= require bootstrap-sprockets
 //= require bootstrap-datetimepicker
-//= require autocomplete-rails
 //= require_tree .
+
+
+$(function() {
+	$('#datetimepicker_after').datetimepicker({
+	  	pickTime: false,
+		format: 'YYYY-MM-DD'
+	});
+	$('#datetimepicker_before').datetimepicker({
+	  	pickTime: false,
+		format: 'YYYY-MM-DD'
+	});
+});

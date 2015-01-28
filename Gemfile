@@ -24,7 +24,8 @@ gem 'kaminari-i18n'
 gem 'rails4-autocomplete'
 gem 'jquery-ui-rails'
 gem 'whenever', :require => false
-gem 'bootstrap-datetimepicker-rails'
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 group :assets do
   gem 'execjs'

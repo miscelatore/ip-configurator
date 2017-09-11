@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223151221) do
+ActiveRecord::Schema.define(version: 20170303091227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20141223151221) do
     t.string   "max_lease_time",       default: "86400", null: false
     t.string   "netbios_name_servers"
     t.string   "netbios_node_type"
+    t.string   "ntp_servers"
   end
 
   create_table "operator", force: true do |t|

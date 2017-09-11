@@ -18,6 +18,7 @@ class AssignedAddress < ActiveRecord::Base
   validates :mac, presence: true, uniqueness: true, format: { with: /([0-9a-f]{2}:){5}[0-9a-f]{2}/ }
   validates :hostname, presence: true, uniqueness: true, format: { with: /[a-z0-9]+(:?[-a-z0-9]*[a-z0-9]+)?/i }
   validates :operator, presence: true
+  validates :hardware, presence: true
   validates :address, presence: true, uniqueness: true
   validate :address_reserved
 

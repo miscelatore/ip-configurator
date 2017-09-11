@@ -37,6 +37,7 @@ class Network < ActiveRecord::Base
   validates :dns_zone, presence: true, domain_name: true
   validates :netbios_name_servers, allow_blank: true, format: { with: Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex), message: "Not a valid IPaddr format"}
   validates :netbios_node_type, inclusion: { in: %w(1 2 4 8) }, presence: true, unless: "netbios_name_servers.blank?"
+  validates :ntp_servers, allow_blank: true, format: { with: Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex), message: "Not a valid IPaddr format"}
   
   after_create :create_addresses
   after_update :upd_dhcp_configuration

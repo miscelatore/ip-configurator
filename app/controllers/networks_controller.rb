@@ -73,7 +73,7 @@ class NetworksController < ApplicationController
       params.require(:network).permit(:name, :dhcp_enabled, :gateway, :netmask, :server_address, 
                                       :space, :start_address, :dns_zone, :server_dns, :pxefile, 
                                       :default_lease_time, :max_lease_time, :netbios_name_servers, 
-                                      :netbios_node_type)
+                                      :netbios_node_type, :ntp_servers)
     end
 
     def search_params

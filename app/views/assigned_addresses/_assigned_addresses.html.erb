@@ -2,25 +2,25 @@
   <tbody>
 		<tr>
 			<th>Id</th>
-			<th><%= sort_link @q, :address_value, t(:value) %></th>
 			<th><%= sort_link @q, :address_ip_address, t(:address) %></th>
 			<th><%= sort_link @q, :hostname, t(:hostname) %></th>
 			<th><%= sort_link @q, :hardware_name, t(:hardware_type) %></th>
 			<th><%= sort_link @q, :operator_name, t(:operator) %></th>
 			<th><%= sort_link @q, :mac_address, t(:mac_address) %></th>
 			<th><%= sort_link @q, :enabled, t(:enabled) %></th>
+			<th><%= sort_link @q, :last_seen_date, t(:last_seen_date) %></th>
 			<th><%= t(:action) %></th>
 		</tr>
     <% @assigned_addresses.each do |assigned_address| %>
 			<tr>
         <td><%= link_to assigned_address.id, assigned_address %></td>
-				<td><%= assigned_address.address.value %></td>
 				<td><%= assigned_address.address.ip_address %></td>
 				<td><%= assigned_address.hostname %></td>
 				<td><%= assigned_address.hardware.name %></td>
 				<td><%= assigned_address.operator.name %></td>
 				<td><%= assigned_address.mac %></td>
 				<td><%= assigned_address.enabled %></td>
+				<td><%= assigned_address.last_seen_date %></td>
 				<td>
 					<div class="btn-group">
 						<a class="btn dropdown-toggle btn-primary action-btn btn-sm" href="#" data-toggle="dropdown">

@@ -20,6 +20,10 @@ class AssignedAddressesController < ApplicationController
   # GET /assigned_addresses/1
   # GET /assigned_addresses/1.json
   def show
+	respond_to do |format|
+		format.html
+		format.json { render json: @assigned_address } 
+	end
   end
   
   # GET /assigned_addresses/new

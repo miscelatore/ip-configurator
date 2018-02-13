@@ -206,5 +206,4 @@ class ConfiguratorServices
      
   end  
   
-  
 end

@@ -103,5 +103,5 @@ Rails.application.configure do
   config.dhcp_logfile = '/var/log/dhcpd.log'
   
   # DHCP restart command
-  config.dhcpRestartCommand = 'sudo /usr/sbin/service isc-dhcp-server restart'
+  config.dhcpRestartCommand = "sudo /usr/sbin/service isc-dhcp-server restart && ssh rails@dhcp-r2.nic.it 'sudo /usr/sbin/service isc-dhcp-server restart'"
 end

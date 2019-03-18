@@ -1,32 +1,32 @@
 <div class="page-header clearfix">
   <div class="pull-left">
-    <h1>Show assigned address <%= @assigned_address.address.ip_address %></h1>
+    <h1><%= t(:show_assigned_address)%> <%= @assigned_address.address.ip_address %></h1>
   </div>
   <div class="pull-right btn-header">
     <a href="<%= assigned_addresses_path %>" class="btn btn-default">
       <span class="glyphicon glyphicon-arrow-left"></span>
-      Back
+      <%= t(:back) %>
     </a>
     <a href="<%= edit_assigned_address_path @assigned_address %>" class="btn btn-default">
       <span class="glyphicon glyphicon-edit"></span>
-      Edit
+      <%= t(:edit) %>
     </a>
   </div>
 </div>
 
 <div class="panel panel-info">
-	<div class="panel-heading"><%= t(:operator) %>: <%= @assigned_address.operator.name  %></div>
+	<div class="panel-heading"><%= t(:operator_id) %>: <%= @assigned_address.operator.name  %></div>
   <div class="panel-body">
-		<dl class="dl-horizontal lead">
-		  <dt><%= t(:address) %>:</dt>
+		<dl class="dl-horizontal text-overflow lead">
+		  <dt><%= t(:address_id) %>:</dt>
 		  <dd><%= @assigned_address.address.ip_address %></dd>
 			<dt><%= t(:hostname) %>:</dt>
 			<dd><%= @assigned_address.hostname %>.<%= @assigned_address.address.network.dns_zone %></dd>
-			<dt><%= t(:hardware_type) %>:</dt>
+			<dt><%= t(:hardware_type_id) %>:</dt>
 			<dd><%= @assigned_address.hardware.name %></dd>
-			<dt><%= t(:operator) %>:</dt>
+			<dt><%= t(:operator_id) %>:</dt>
 			<dd><%= @assigned_address.operator.name %></dd>
-			<dt><%= t(:mac_address) %>:</dt>
+			<dt><%= t(:mac) %>:</dt>
 			<dd><%= @assigned_address.mac %></dd>
 			<dt><%= t(:description) %>:</dt>
 			<dd><%= @assigned_address.description %></dd>

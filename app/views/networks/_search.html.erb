@@ -1,24 +1,35 @@
-<div class="panel panel-warning">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t('search_options')%></h3>
+<div class="card border-warning">
+  <div class="card-header border-warning">
+    <%= t('search_options')%>
   </div>
-  <div class="panel-body">
-		<%= search_form_for( @q, url: networks_path, :method => :get, html: { class: "form-inline", role: "form" }) do |f| %>
-					<div class="form-group">
-		    		<%= f.label :name_cont, t('name') %><br />
-		    		<%= f.text_field :name_cont, :class => "form-control" %>
-			  	</div>
-					<div class="form-group">
-					  <%= f.label :start_address_cont %><br />
-						<%= f.text_field :start_address_cont, :class => "form-control" %>
-					</div>
-					<div class="form-group">
-		    		<%= f.label :dhcp_enabled_eq, t('dhcp_enabled') %><br />
-						<%= f.select(:dhcp_enabled_eq, %w{true false}, {:include_blank => true }, :class => "form-control" ) %>
-			  	</div>
-					<div class="form-group pull-right"> 		
-						<%= f.submit class: 'btn btn-warning' %>
-			  	</div>
+  <div class="card-body">
+		<%= search_form_for( @q, url: networks_path, method: :get, html: { role: "form" }) do |f| %>
+      <div class="form-row">
+    		<div class="col-md-3 mb-3">
+      		<%= f.label :name_cont, t('name') %><br />
+      		<%= f.text_field :name_cont, value: session[:name_cont], class: "form-control" %>
+      	</div>
+		
+        <div class="col-md-3 mb-3">
+    		  <%= f.label :start_address_cont, t(:start_address) %><br />
+    			<%= f.text_field :start_address_cont, value: session[:start_address_cont], class: "form-control" %>
+    		</div>
+		
+        <div class="col-md-1 mb-3">
+      		<%= f.label :dhcp_enabled_eq, t('dhcp_enabled') %><br />
+    			<%= f.select(:dhcp_enabled_eq, %w{true false}, {include_blank: true, selected: session[:dhcp_enabled_eq] }, class: "form-control" ) %>
+      	</div>
+        <div class="form-group col-md-1 mb-3">
+          <%= render 'shared/per_page_results', obj_var: f %>
+        </div>
+      </div>  
+      
+      <div class="form-row">
+        <div class="form-group col-md-3 mb-3">			
+					<%= f.submit class: 'btn btn-warning' %>
+          <%= link_to t(:clear_search), networks_path(search_cancel: true), class: "btn btn-outline-dark" %>
+			  </div>
+      </div> 
 		<% end %>
-	</div>
+  </div>
 </div>

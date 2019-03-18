@@ -1,20 +1,24 @@
 class AssignedAddressesController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   
   autocomplete :address, :ip_address, :full => true, :display_value => :toString, :extra_data => [:reserved], :scopes => [:sorted], :limit => 20
   
-  before_action :set_assigned_address, only: [:show, :edit, :update, :destroy]
+  before_action :get_assigned_address, only: [:show, :edit, :update, :destroy]
   before_action :clear_search_index, only: [:index]
   
-  
+  include CommonsControllable
 
   # GET /assigned_addresses
   # GET /assigned_addresses.json
   def index
-    @q = AssignedAddress.search(search_params)
-    @q.sorts = 'updated_at' if @q.sorts.empty?
-    @assigned_addresses = @q.result().page(params[:page])
+    if params[:limit_cont].nil?
+      params[:limit_cont] = 20
+    end
+    
+    @q = AssignedAddress.ransack(search_params)
+    @total_result = @q.result().count
+    @assigned_addresses = @q.result().page(params[:page]).per(params[:limit_cont].to_i)
   end
   
   # GET /assigned_addresses/1
@@ -34,7 +38,7 @@ class AssignedAddressesController < ApplicationController
   # POST /assigned_addresses
   # POST /assigned_addresses.json
   def create
-    @assigned_address = AssignedAddress.new(assigned_address_params)
+    @assigned_address = current_user.assigned_addresses.new(assigned_address_params)
 
     respond_to do |format|
       if @assigned_address.save
@@ -73,7 +77,7 @@ class AssignedAddressesController < ApplicationController
   
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_assigned_address
+    def get_assigned_address
       @assigned_address = AssignedAddress.find(params[:id])
     end
 
@@ -85,56 +89,46 @@ class AssignedAddressesController < ApplicationController
     def search_params
       if !params[:q].nil?
             if !params[:q][:hostname_cont].nil?
-               session[:hostname] = params[:q][:hostname_cont].to_s
+               session[:hostname_cont] = params[:q][:hostname_cont].to_s
             end
             if !params[:q][:mac_cont].nil?
-               session[:mac] = params[:q][:mac_cont].to_s
+               session[:mac_cont] = params[:q][:mac_cont].to_s
             end
             if !params[:q][:address_ip_address_cont].nil?
-               session[:address] = params[:q][:address_ip_address_cont]
+               session[:address_ip_address_cont] = params[:q][:address_ip_address_cont]
             end
             if !params[:q][:operator_name_cont].nil?
-               session[:operator] = params[:q][:operator_name_cont]
+               session[:operator_name_cont] = params[:q][:operator_name_cont]
             end
             if !params[:q][:hardware_id_eq].nil?
-               session[:hardware_id] = params[:q][:hardware_id_eq]
+               session[:hardware_id_eq] = params[:q][:hardware_id_eq]
             end
             if !params[:q][:enabled_eq].nil?
-               session[:enabled] = params[:q][:enabled_eq]
+               session[:enabled_eq] = params[:q][:enabled_eq]
             end
             if !params[:q][:description_cont].nil?
-               session[:description] = params[:q][:description_cont].to_s
+               session[:description_cont] = params[:q][:description_cont].to_s
             end
             if !params[:q][:last_seen_date_lteq].nil?
-               session[:last_seen_date_before] = params[:q][:last_seen_date_lteq]
+               session[:last_seen_date_lteq] = params[:q][:last_seen_date_lteq]
             end
             if !params[:q][:last_seen_date_gteq].nil?
-               session[:last_seen_date_after] = params[:q][:last_seen_date_gteq]
+               session[:last_seen_date_gteq] = params[:q][:last_seen_date_gteq]
             end
           else
             params[:q] = Hash.new
-            params[:q][:hostname_cont]            ||= session[:hostname]
-            params[:q][:mac_cont]                 ||= session[:mac]
-            params[:q][:address_ip_address_cont]  ||= session[:address]
-            params[:q][:operator_name_cont]       ||= session[:operator]
-            params[:q][:hardware_id_eq]           ||= session[:hardware_id]
-            params[:q][:enabled_eq]               ||= session[:enabled]
-            params[:q][:description_cont]         ||= session[:description]
-            params[:q][:last_seen_date_lteq]      ||= session[:last_seen_date_before]
-            params[:q][:last_seen_date_gteq]      ||= session[:last_seen_date_after]
+            params[:q][:hostname_cont]            ||= session[:hostname_cont]
+            params[:q][:mac_cont]                 ||= session[:mac_cont]
+            params[:q][:address_ip_address_cont]  ||= session[:address_ip_address_cont]
+            params[:q][:operator_name_cont]       ||= session[:operator_name_cont]
+            params[:q][:hardware_id_eq]           ||= session[:hardware_id_eq]
+            params[:q][:enabled_eq]               ||= session[:enabled_eq]
+            params[:q][:description_cont]         ||= session[:description_cont]
+            params[:q][:last_seen_date_lteq]      ||= session[:last_seen_date_lteq]
+            params[:q][:last_seen_date_gteq]      ||= session[:last_seen_date_gteq]
           end
       
       params[:q]
     end
-
-    def clear_search_index
-      if params[:search_cancel]
-        params.delete(:search_cancel)
-        if(!search_params.nil?)
-          search_params.each do |key, param|
-            search_params[key] = nil
-          end
-        end
-      end
-    end    
+        
 end

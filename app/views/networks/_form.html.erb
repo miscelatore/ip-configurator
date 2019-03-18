@@ -1,96 +1,86 @@
-<%= form_for(@network, html: { class: "form-horizontal" }) do |f| %>
-  <% if @network.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@network.errors.count, "error") %> prohibited this album from being saved:</h2>
+<%= form_for(@network) do |f| %>
+  <%= render 'shared/error_messages', obj_var: @network %>
 
-      <ul>
-      <% @network.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-    <div class="form-group">
+  <div class="form-group row">
     <%= f.label :name, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :name, class: 'form-control' %>
     </div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
     <%= f.label :start_address, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :start_address, class: 'form-control' %>
     </div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
     <%= f.label :space, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :space, class: 'form-control' %>
     </div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
     <%= f.label :gateway, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :gateway, class: 'form-control' %>
     </div>
 	</div>
-  <div class="form-group">
+  <div class="form-group row">
     <%= f.label :netmask, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :netmask, class: 'form-control' %>
     </div>
 	</div>
-  <div class="form-group">
+  <div class="form-group row">
     <%= f.label :server_dns, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :server_dns, class: 'form-control' %>
     </div>
 	</div>
-  <div class="form-group">
+  <div class="form-group row">
     <%= f.label :dhcp_enabled, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.check_box :dhcp_enabled, class: 'form-control' %>
     </div>
 	</div>	
-  <div class="form-group">
+  <div class="form-group row">
     <%= f.label :dns_zone, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :dns_zone, class: 'form-control' %>
     </div>
 	</div>
-  <div class="form-group">
+  <div class="form-group row">
     <%= f.label :pxefile, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :pxefile, class: 'form-control' %>
     </div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
     <%= f.label :default_lease_time, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :default_lease_time, class: 'form-control' %>
     </div>
 	</div>
-  <div class="form-group">
+  <div class="form-group row">
     <%= f.label :max_lease_time, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :max_lease_time, class: 'form-control' %>
     </div>
 	</div>
 	
-	<div class="form-group">
+	<div class="form-group row">
     <%= f.label :netbios_name_servers, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :netbios_name_servers, class: 'form-control' %>
     </div>
 	</div>
-  <div class="form-group">
+  <div class="form-group row">
     <%= f.label :netbios_node_type, class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-	<%= f.select(:netbios_node_type, %w{1 2 4 8}, {:include_blank => true, :selected => @network.netbios_node_type }, class: 'form-control' ) %>	
+	<%= f.select(:netbios_node_type, %w{1 2 4 8}, {include_blank: true, selected: @network.netbios_node_type }, class: 'form-control' ) %>	
     </div>
 	</div>
-    <div class="form-group">
+    <div class="form-group row">
       <%= f.label :ntp_servers, class: "col-sm-2 control-label" %>
       <div class="col-sm-6">
        <%= f.text_field :ntp_servers, class: 'form-control' %>
@@ -98,7 +88,7 @@
     </div>
 
 
-  <div class="actions col-md-offset-2">
+  <div class="actions offset-md-2">
     <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

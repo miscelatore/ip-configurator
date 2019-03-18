@@ -1,26 +1,30 @@
-<%# add navigation links to this file %>
-
 <% if user_signed_in? %>
-	<li><%= link_to 'Addresses', addresses_path %></li>
-	<li><%= link_to 'Networks', networks_path %></li>
-	<li><%= link_to 'AssignedAddress', assigned_addresses_path %></li>
-	<li><%= link_to 'Operators', operators_path %></li>
-	<li><%= link_to 'Hardwares', hardwares_path %></li>
-	<li><%= link_to 'Locations', locations_path %></li>
-	<li class="dropdown">
-     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage DHCPd <span class="caret"></span></a>
-     <ul class="dropdown-menu" role="menu">
-       <li><%= link_to 'Renew DHCP Config', renew_dhcp_config_path %></li>
-       <li class="divider"></li>
-       <li><%= link_to 'Restart DHCP', restart_dhcp_path %></li>
-     </ul>
-   </li>
-	<li class="dropdown">
-     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
-     <ul class="dropdown-menu" role="menu">
-			 <li><%= link_to 'Users', users_path %></li>
-			 <li class="divider"></li>
-			 <li><%= link_to 'Roles', roles_path %></li>
-     </ul>
-   </li>
+	<li class="nav-item active"><%= link_to 'Addresses', addresses_path, class: "nav-link" %></li>
+	<li class="nav-item active"><%= link_to 'Networks', networks_path, class: "nav-link" %></li>
+	<li class="nav-item active"><%= link_to 'AssignedAddress', assigned_addresses_path, class: "nav-link" %></li>
+	<li class="nav-item active"><%= link_to 'Operators', operators_path, class: "nav-link" %></li>
+	<li class="nav-item active"><%= link_to 'Hardwares', hardwares_path, class: "nav-link" %></li>
+	<li class="nav-item active"><%= link_to 'Locations', locations_path, class: "nav-link" %></li>
+	
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Manage DHCPd
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <%= link_to 'Renew DHCP Config', renew_dhcp_config_path, class: "dropdown-item" %>
+      <div class="dropdown-divider"></div>
+      <%= link_to 'Restart DHCP', restart_dhcp_path, class: "dropdown-item" %>
+    </div>
+  </li>
+  
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Admin
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <%= link_to 'Users', users_path, class: "dropdown-item" %>
+      <div class="dropdown-divider"></div>
+      <%= link_to 'Roles', roles_path, class: "dropdown-item" %>
+    </div>
+  </li>
 <% end %>

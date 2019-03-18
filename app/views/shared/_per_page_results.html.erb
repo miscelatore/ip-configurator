@@ -1,0 +1,4 @@
+          <div class="form-group">
+            <%= obj_var.label :limit_cont, t('per_page_results') %>
+            <%= select_tag :limit_cont, options_for_select([20, 200, 2000, 200000], selected: params[:limit_cont] || 20), class: "form-control" %>
+          </div>

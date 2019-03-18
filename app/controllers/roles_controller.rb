@@ -1,11 +1,11 @@
 class RolesController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   
   before_action :set_role, only: [:show, :edit, :update, :destroy]
   before_action :clear_search_index, only: [:index]
 
   def index
-    @q = Role.search(search_params)
+    @q = Role.ransack(search_params)
     @q.sorts = 'name' if @q.sorts.empty?
     @roles = @q.result().page(params[:page])
   end

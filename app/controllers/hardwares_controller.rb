@@ -1,16 +1,22 @@
 class HardwaresController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   
   before_action :set_hardware, only: [:show, :edit, :update, :destroy]
   before_action :clear_search_index, only: [:index]
 
+  include CommonsControllable
+  
   # GET /hardwares
   # GET /hardwares.json
   def index
-    @q = Hardware.search(search_params)
-    @q.sorts = 'name' if @q.sorts.empty?
-    @hardwares = @q.result().page(params[:page])
+    if params[:limit_cont].nil?
+      params[:limit_cont] = 20
+    end
+    
+    @q = Hardware.ransack(search_params)
+    @total_result = @q.result().count
+    @hardwares = @q.result().page(params[:page]).per(params[:limit_cont].to_i)
   end
   
   # GET /hardwares/1
@@ -26,11 +32,12 @@ class HardwaresController < ApplicationController
   # POST /hardwares
   # POST /hardwares.json
   def create
-    @hardware = Hardware.new(hardware_params)
+    #@hardware = Hardware.new(hardware_params)
+    @hardware = current_user.hardwares.new(hardware_params)
 
     respond_to do |format|
       if @hardware.save
-        format.html { redirect_to @hardware, notice: 'Hardware was successfully created.' }
+        format.html { redirect_to @hardware, notice: t(:hardware_type_created_ok) }
         format.json { render action: 'show', status: :created, location: @hardware }
       else
         format.html { render action: 'new' }
@@ -44,7 +51,7 @@ class HardwaresController < ApplicationController
   def update
     respond_to do |format|
       if @hardware.update(hardware_params)
-        format.html { redirect_to @hardware, notice: 'Hardware was successfully updated.' }
+        format.html { redirect_to @hardware, notice: t(:hardware_type_updated_ok) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -77,24 +84,13 @@ class HardwaresController < ApplicationController
     def search_params
       if !params[:q].nil?
             if !params[:q][:name_cont].nil?
-               session[:name] = params[:q][:name_cont].to_s
+               session[:name_cont] = params[:q][:name_cont].to_s
             end
           else
             params[:q] = Hash.new
-            params[:q][:name_cont] ||= session[:name]
+            params[:q][:name_cont] ||= session[:name_cont]
           end
       
       params[:q]
-    end
-
-    def clear_search_index
-      if params[:search_cancel]
-        params.delete(:search_cancel)
-        if(!search_params.nil?)
-          search_params.each do |key, param|
-            search_params[key] = nil
-          end
-        end
-      end
     end
 end

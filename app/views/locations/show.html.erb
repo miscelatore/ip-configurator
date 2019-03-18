@@ -1,52 +1,53 @@
-<div class="page-header clearfix">
-  <div class="pull-left">
-    <h1>Show location</h1>
-  </div>
-  <div class="pull-right btn-header">
-    <a href="<%= locations_path %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-arrow-left"></span>
-      Back
-    </a>
-    <a href="<%= edit_location_path @location %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-eye-open"></span>
-      Edit
-    </a>
-  </div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-body">
-		<dl class="dl-horizontal lead">
-		  <dt><%= t(:id) %>:</dt>
-		  <dd><%= @location.id  %></dd>
-		  <dt><%= t(:name) %>:</dt>
-		  <dd><%= @location.name  %></dd>
-		  <dt><%= t(:created_at) %>:</dt>
-		  <dd><%= @location.created_at  %></dd>
-		  <dt><%= t(:updated_at) %>:</dt>
-		  <dd><%= @location.updated_at  %></dd>
-		</dl>
- </div>
-</div>
-
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-info">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <h4 class="panel-title"><%= t(:ports) %><span class="caret"></span></h4>
-        </a>
-      </h4>
+<div class="container">
+  <div class="page-header clearfix">
+    <div class="pull-left">
+      <h1><%= t(:show_location) %></h1>
     </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-				<ul>
-					<% @location.location_ports.each do |lp| %>
-				  	<li><%= lp.name %></li>
-					<% end %>
-				</ul>
+    <div class="pull-right btn-header">
+      <a href="<%= locations_path %>" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        <%= t(:back) %>
+      </a>
+      <a href="<%= edit_location_path @location %>" class="btn btn-default">
+        <span class="glyphicon glyphicon-eye-open"></span>
+        <%= t(:edit) %>
+      </a>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+  		<dl class="dl-horizontal lead">
+  		  <dt><%= t(:id) %>:</dt>
+  		  <dd><%= @location.id  %></dd>
+  		  <dt><%= t(:name) %>:</dt>
+  		  <dd><%= @location.name  %></dd>
+  		  <dt><%= t(:created_at) %>:</dt>
+  		  <dd><%= @location.created_at  %></dd>
+  		  <dt><%= t(:updated_at) %>:</dt>
+  		  <dd><%= @location.updated_at  %></dd>
+  		</dl>
+   </div>
+  </div>
+
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-info">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h4 class="panel-title"><%= t(:ports) %><span class="caret"></span></h4>
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+  				<ul>
+  					<% @location.location_ports.each do |lp| %>
+  				  	<li><%= lp.name %></li>
+  					<% end %>
+  				</ul>
+        </div>
       </div>
     </div>
   </div>
 </div>
-

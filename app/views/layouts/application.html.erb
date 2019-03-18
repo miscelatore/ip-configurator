@@ -3,18 +3,25 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Ip Configurator" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ip Configurator" %>">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ip Configurator" %>">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
   </head>
   <body>
     <header>
-      <%= render 'layouts/navigation' %>
+      <% if user_signed_in? %>
+        <%= render 'layouts/navigation' %>
+      <% end %>
     </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
+
+    <div role="container-fluid">
+       <% if user_signed_in? %>
+         <%= render 'layouts/messages' %>
+       <% end %>
        <%= yield %>
-    </main>
+    </div>
   </body>
 </html>

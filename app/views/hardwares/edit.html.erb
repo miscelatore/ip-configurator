@@ -1,17 +1,19 @@
-<div class="page-header clearfix">
-  <div class="pull-left">
-    <h1>Editing Hardware</h1>
+<div class="container">
+  <div class="page-header clearfix">
+    <div class="pull-left">
+      <h1><%= t(:edit_hardware_type) %></h1>
+    </div>
+    <div class="pull-right btn-header">
+      <a href="<%= hardwares_path %>" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        <%= t(:back) %>
+      </a>
+      <a href="<%= hardware_path @hardware %>" class="btn btn-default">
+        <span class="glyphicon glyphicon-eye-open"></span>
+        <%= t(:show) %>
+      </a>
+    </div>
   </div>
-  <div class="pull-right btn-header">
-    <a href="<%= hardwares_path %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-arrow-left"></span>
-      Back
-    </a>
-    <a href="<%= hardware_path @hardware %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-eye-open"></span>
-      Show
-    </a>
-  </div>
-</div>
 
-<%= render 'form' %>
+  <%= render 'form' %>
+</div>

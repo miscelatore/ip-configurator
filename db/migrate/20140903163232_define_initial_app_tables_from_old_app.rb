@@ -1,4 +1,4 @@
-class DefineInitialAppTablesFromOldApp < ActiveRecord::Migration
+class DefineInitialAppTablesFromOldApp < ActiveRecord::Migration[4.2]
   def change
     create_table "address", force: true do |t|
       t.integer  "version",      limit: 8, null: false

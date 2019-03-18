@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :clear_search_index, only: [:index]
 
   def index
-    @q = User.search(search_params)
+    @q = User.ransack(search_params)
     @q.sorts = 'email' if @q.sorts.empty?
     @users = @q.result().page(params[:page])
   end

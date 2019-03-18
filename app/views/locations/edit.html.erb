@@ -1,17 +1,19 @@
-<div class="page-header clearfix">
-  <div class="pull-left">
-    <h1>Editing Location</h1>
+<div class="container">
+  <div class="page-header clearfix">
+    <div class="pull-left">
+      <h1><%= t(:edit_location) %></h1>
+    </div>
+    <div class="pull-right btn-header">
+      <a href="<%= locations_path %>" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        <%= t(:back) %>
+      </a>
+      <a href="<%= location_path @location %>" class="btn btn-default">
+        <span class="glyphicon glyphicon-eye-open"></span>
+        <%= t(:show) %>
+      </a>
+    </div>
   </div>
-  <div class="pull-right btn-header">
-    <a href="<%= locations_path %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-arrow-left"></span>
-      Back
-    </a>
-    <a href="<%= location_path @location %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-eye-open"></span>
-      Show
-    </a>
-  </div>
-</div>
 
-<%= render 'form' %>
+  <%= render 'form' %>
+</div>

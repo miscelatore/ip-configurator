@@ -1,15 +1,5 @@
 <%= form_for(@operator, html: { class: "form-horizontal" }) do |f| %>
-  <% if @operator.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@operator.errors.count, "error") %> prohibited this album from being saved:</h2>
-
-      <ul>
-      <% @operator.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages', obj_var: @operator %>
 
 	<div class="form-group">
     <%= f.label :name, class: "col-sm-2 control-label" %>
@@ -17,7 +7,6 @@
       <%= f.text_field :name, class: 'form-control' %>
     </div>
 	</div>
-
 
   <div class="actions col-md-offset-2">
     <%= f.submit class: 'btn btn-primary' %>

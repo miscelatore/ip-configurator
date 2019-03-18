@@ -1,16 +1,18 @@
-<h3>Welcome to ip-configurator</h3>
+<div class="mt-3 mx-3">
+<h3 >Welcome to ip-configurator</h3>
 
-<div class="panel panel-default">
-  <div class="panel-body">
-		<dl class="dl-horizontal ">
-		  <dt><%= t(:registered_user) %>:</dt>
-		  <dd><%= @registered_user %></dd>
-			<dt><%= t(:active_ip) %>:</dt>
-		  <dd><%= @active_ip  %></dd>
-			<dt><%= t(:ip_seen_today) %>:</dt>
-		  <dd><%= @ip_seen_today  %></dd>
-		  <dt><%= t(:ip_no_more_seen) %>:</dt>
-		  <dd><%= @ip_no_more_seen  %></dd>
+<div class="card card-default mt-3 mx-3 ">
+  <div class="card-body">
+		<dl class="row">
+		  <dt class="col-sm-3"><%= t(:registered_user) %>:</dt>
+		  <dd class="col-sm-9"><%= @registered_user %></dd>
+			<dt class="col-sm-3"><%= t(:active_ip) %>:</dt>
+		  <dd class="col-sm-9"><%= @active_ip  %></dd>
+			<dt class="col-sm-3"><%= t(:ip_seen_today) %>:</dt>
+		  <dd class="col-sm-9"><%= @ip_seen_today  %></dd>
+		  <dt class="col-sm-3"><%= t(:ip_no_more_seen) %>:</dt>
+		  <dd class="col-sm-9"><%= @ip_no_more_seen  %></dd>
 		</dl>
  </div>
+</div>
 </div>

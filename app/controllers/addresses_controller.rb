@@ -1,13 +1,19 @@
 class AddressesController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   
   before_action :set_address, only: [:show, :edit, :update, :destroy]
   before_action :clear_search_index, only: [:index]
+  
+  include CommonsControllable
 
   def index
-    @q = Address.search(search_params)
-    @q.sorts = 'network_id, value' if @q.sorts.empty?
-    @addresses = @q.result().page(params[:page])
+    if params[:limit_cont].nil?
+      params[:limit_cont] = 20
+    end
+    
+    @q = Address.ransack(search_params)
+    @total_result = @q.result().count
+    @addresses = @q.result().page(params[:page]).per(params[:limit_cont].to_i)
   end
   
   # PATCH/PUT /addresses/1
@@ -15,7 +21,7 @@ class AddressesController < ApplicationController
   def update
     respond_to do |format|
       if @address.update(address_params)
-        format.html { redirect_to @address, notice: 'Address was successfully updated.' }
+        format.html { redirect_to @address, notice: t(:address_updated_ok) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -38,36 +44,25 @@ class AddressesController < ApplicationController
     def search_params
       if !params[:q].nil?
             if !params[:q][:ip_address_cont].nil?
-               session[:ip_address] = params[:q][:ip_address_cont].to_s
+               session[:ip_address_cont] = params[:q][:ip_address_cont].to_s
             end
             if !params[:q][:network_id_eq].nil?
-               session[:network_id] = params[:q][:network_id_eq]
+               session[:network_id_eq] = params[:q][:network_id_eq]
             end
             if !params[:q][:reserved_eq].nil?
-               session[:reserved] = params[:q][:reserved_eq]
+               session[:reserved_eq] = params[:q][:reserved_eq]
             end
             if !params[:q][:assigned_address_address_id_present].nil?
-               session[:assigned_address_address_id] = params[:q][:assigned_address_address_id_present]
+               session[:assigned_address_address_id_present] = params[:q][:assigned_address_address_id_present]
             end
           else
             params[:q] = Hash.new
-            params[:q][:ip_address_cont]                      ||= session[:ip_address]
-            params[:q][:network_id_eq]                        ||= session[:network_id]
-            params[:q][:reserved_eq]                          ||= session[:reserved]
-            params[:q][:assigned_address_address_id_present]  ||= session[:assigned_address_address_id]
+            params[:q][:ip_address_cont]                      ||= session[:ip_address_cont]
+            params[:q][:network_id_eq]                        ||= session[:network_id_eq]
+            params[:q][:reserved_eq]                          ||= session[:reserved_eq]
+            params[:q][:assigned_address_address_id_present]  ||= session[:assigned_address_address_id_present]
           end
       
       params[:q]
-    end
-
-    def clear_search_index
-      if params[:search_cancel]
-        params.delete(:search_cancel)
-        if(!search_params.nil?)
-          search_params.each do |key, param|
-            search_params[key] = nil
-          end
-        end
-      end
-    end
+    end 
 end

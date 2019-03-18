@@ -1,6 +1,6 @@
 class DhcpCommandsController < ApplicationController
   #authorize_resource class: false
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   
   def make_conf
     logger.debug("Make new DHCP configuration")

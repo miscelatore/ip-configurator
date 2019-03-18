@@ -1,15 +1,21 @@
 class OperatorsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   
   before_action :set_operator, only: [:show, :edit, :update, :destroy]
   before_action :clear_search_index, only: [:index]
+  
+  include CommonsControllable
 
   # GET /operators
   # GET /operators.json
   def index
-    @q = Operator.search(search_params)
-    @q.sorts = 'name' if @q.sorts.empty?
-    @operators = @q.result().page(params[:page])
+    if params[:limit_cont].nil?
+      params[:limit_cont] = 20
+    end
+    
+    @q = Operator.ransack(search_params)
+    @total_result = @q.result().count
+    @operators = @q.result().page(params[:page]).per(params[:limit_cont].to_i)
   end
   
   # GET /operators/1
@@ -25,11 +31,11 @@ class OperatorsController < ApplicationController
   # POST /operators
   # POST /operators.json
   def create
-    @operator = Operator.new(operator_params)
+    @operator = current_user.operators.new(operator_params)
 
     respond_to do |format|
       if @operator.save
-        format.html { redirect_to @operator, notice: 'Operator was successfully created.' }
+        format.html { redirect_to @operator, notice: t(:operator_created_ok) }
         format.json { render action: 'show', status: :created, location: @operator }
       else
         format.html { render action: 'new' }
@@ -43,7 +49,7 @@ class OperatorsController < ApplicationController
   def update
     respond_to do |format|
       if @operator.update(operator_params)
-        format.html { redirect_to @operator, notice: 'Operator was successfully updated.' }
+        format.html { redirect_to @operator, notice: t(:updated_ok) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -76,24 +82,13 @@ class OperatorsController < ApplicationController
     def search_params
       if !params[:q].nil?
             if !params[:q][:name_cont].nil?
-               session[:name] = params[:q][:name_cont].to_s
+               session[:name_cont] = params[:q][:name_cont].to_s
             end
           else
             params[:q] = Hash.new
-            params[:q][:name_cont] ||= session[:name]
+            params[:q][:name_cont] ||= session[:name_cont]
           end
       
       params[:q]
-    end
-
-    def clear_search_index
-      if params[:search_cancel]
-        params.delete(:search_cancel)
-        if(!search_params.nil?)
-          search_params.each do |key, param|
-            search_params[key] = nil
-          end
-        end
-      end
-    end    
+    end   
 end

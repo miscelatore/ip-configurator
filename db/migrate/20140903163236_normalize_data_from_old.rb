@@ -1,4 +1,4 @@
-class DefineInitialAppTablesFromOldApp < ActiveRecord::Migration
+class DefineInitialAppTablesFromOldApp < ActiveRecord::Migration[4.2]
   def change
 
     

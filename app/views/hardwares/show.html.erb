@@ -1,30 +1,32 @@
-<div class="page-header clearfix">
-  <div class="pull-left">
-    <h1>Show hardware</h1>
+<div class="container">
+  <div class="page-header clearfix">
+    <div class="pull-left">
+      <h1><%= t(:show_hardware_type) %></h1>
+    </div>
+    <div class="pull-right btn-header">
+      <a href="<%= hardwares_path %>" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        <%= t(:back) %>
+      </a>
+      <a href="<%= edit_hardware_path @hardware %>" class="btn btn-default">
+        <span class="glyphicon glyphicon-eye-open"></span>
+        <%= t(:edit) %>
+      </a>
+    </div>
   </div>
-  <div class="pull-right btn-header">
-    <a href="<%= hardwares_path %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-arrow-left"></span>
-      Back
-    </a>
-    <a href="<%= edit_hardware_path @hardware %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-eye-open"></span>
-      Edit
-    </a>
-  </div>
-</div>
 
-<div class="panel panel-default">
-  <div class="panel-body">
-		<dl class="dl-horizontal lead">
-		  <dt><%= t(:id) %>:</dt>
-		  <dd><%= @hardware.id  %></dd>
-		  <dt><%= t(:name) %>:</dt>
-		  <dd><%= @hardware.name  %></dd>
-		  <dt><%= t(:created_at) %>:</dt>
-		  <dd><%= @hardware.created_at  %></dd>
-		  <dt><%= t(:updated_at) %>:</dt>
-		  <dd><%= @hardware.updated_at  %></dd>
-		</dl>
- </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+  		<dl class="dl-horizontal lead">
+  		  <dt><%= t(:id) %>:</dt>
+  		  <dd><%= @hardware.id  %></dd>
+  		  <dt><%= t(:name) %>:</dt>
+  		  <dd><%= @hardware.name  %></dd>
+  		  <dt><%= t(:created_at) %>:</dt>
+  		  <dd><%= @hardware.created_at  %></dd>
+  		  <dt><%= t(:updated_at) %>:</dt>
+  		  <dd><%= @hardware.updated_at  %></dd>
+  		</dl>
+   </div>
+  </div>
 </div>

@@ -1,51 +1,70 @@
-<table class="table table-striped table-bordered">
-  <tbody>
-		<tr>
-			<th>Id</th>
-			<th><%= sort_link @q, :name, t(:name) %></th>
-			<th><%= t(:created_at) %></th>
-			<th><%= t(:updated_at) %></th>
-			<th><%= t(:action) %></th>
-		</tr>
-    <% @operators.each do |operator| %>
-			<tr>
-        <td><%= link_to operator.id, operator %></td>
-				<td><%= operator.name %></td>
-				<td><%= operator.created_at %></td>
-				<td><%= operator.updated_at %></td>
-				<td>
-					<div class="btn-group">
-						<a class="btn dropdown-toggle btn-primary action-btn btn-sm" href="#" data-toggle="dropdown">
-					 		<%= t('action') %>
-							<span class="caret"></span>
-					 	</a>
-					<ul class="dropdown-menu">
-							<li>
-								<%= link_to operator do %>
-									<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-									<%= t('show') %>
-								<% end %>
-							</li>
-					    <li>
-								<%= link_to edit_operator_path(operator) do %>
-									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-									<%= t('edit') %>
-								<% end %>
-							</li>
-							<li>
-								<%= link_to operator, method: :delete, data: { confirm: t(:are_you_sure) } do %>
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-									<%= t('destroy') %>
-								<% end %>
-							</li>
-					</ul>
-					</div>
-				</td>
-      </tr>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t(:total_results) %> <%= @total_result if @total_result > 0 %></h3>
+  </div>
+  <div class="panel-body"> 
+    <% if @total_result == 0 %>
+    	<p><%= t(:no_results) %></p>
+    <% else %>
+      <div class="table-responsive">
+        <center>  
+          <%= paginate @operators %>
+        </center>
+        <table class="table table-striped table-bordered">
+          <tbody>
+        		<tr>
+        			<th>Id</th>
+        			<th><%= sort_link @q, :name, t(:name) %></th>
+        			<th><%= t(:created_at) %></th>
+        			<th><%= t(:updated_at) %></th>
+        			<th><%= t(:action) %></th>
+        		</tr>
+            <% @operators.each do |operator| %>
+        			<tr>
+                <td><%= link_to operator.id, operator %></td>
+        				<td><%= operator.name %></td>
+        				<td><%= operator.created_at %></td>
+        				<td><%= operator.updated_at %></td>
+        				<td align="right">
+        					<div class="btn-group">
+        						<a class="btn dropdown-toggle btn-primary action-btn btn-sm" href="#" data-toggle="dropdown">
+        					 		<%= t('action') %>
+        							<span class="caret"></span>
+        					 	</a>
+        					<ul class="dropdown-menu dropdown-menu-right">
+        							<li>
+        								<%= link_to operator do %>
+        									<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        									<%= t('show') %>
+        								<% end %>
+        							</li>
+        					    <li>
+        								<%= link_to edit_operator_path(operator) do %>
+        									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        									<%= t('edit') %>
+        								<% end %>
+        							</li>
+        							<li>
+        								<%= link_to operator, method: :delete, data: { confirm: t(:are_you_sure) } do %>
+        									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        									<%= t('destroy') %>
+        								<% end %>
+        							</li>
+        					</ul>
+        					</div>
+        				</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br><br>
+      </div>
+     <center>  
+       <%= paginate @operators %>
+     </center>
     <% end %>
-  </tbody>
-</table>
-
+  </div>
+</div>
 
 
 

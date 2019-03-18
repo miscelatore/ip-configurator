@@ -1,12 +1,13 @@
 require 'ip'
 
-class Address < ActiveRecord::Base
+class Address < ApplicationRecord
   self.table_name = "address"
   
   belongs_to :user
   belongs_to :network
   has_one    :assigned_address, dependent: :destroy
   
+  default_scope -> { order(:network_id, :value) }
   scope :sorted, -> { order(:network_id, :value) }
   #scope :unassigned, -> { where( 'id not in (select address_id from assigned_address) OR id in (select address_id from assigned_address where address_id <> id)' ) }
   

@@ -2,12 +2,12 @@
   
 	<div class="page-header clearfix">
 	  <div class="pull-left">
-	    <h1>Listing Hardware Types</h1>
+	    <h1><%= t(:listing_hardware_types) %></h1>
 	  </div>
 	  <div class="pull-right btn-header">
 	    <a href="<%= new_hardware_path %>" class="btn btn-primary">
 	      <span class="glyphicon glyphicon-plus"></span>
-	      New Hardware Type
+	      <%= t(:new_hardware_type) %> 
 	    </a>
 	  </div>
 	</div>
@@ -23,7 +23,4 @@
 	    <%= render 'hardwares' %>
 	  </div>
 	</div>
-	
-		<%= paginate @hardwares %>
-
 </div>

@@ -1,42 +1,32 @@
-<%= form_for(@address, html: { class: "form-horizontal" }) do |f| %>
-  <% if @address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+<%= form_for(@address) do |f| %>
+  <%= render 'shared/error_messages', obj_var: @address %>
 
-      <ul>
-      <% @address.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-	<div class="form-group">
-    <%= f.label :ip_address, class: "col-sm-2 control-label" %>
+	<div class="form-group row">
+    <%= f.label :ip_address, t(:ip_address), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :ip_address, class: 'form-control', disabled: true  %>
     </div>
 	</div>
-	<div class="form-group">
-    <%= f.label :start_address, class: "col-sm-2 control-label" %>
+	<div class="form-group row">
+    <%= f.label :start_address, t(:start_address), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
 			<%= f.text_field :start_address, value: @address.network.start_address, class: 'form-control', disabled: true  %>
     </div>
 	</div>
-  <div class="form-group">
-    <%= f.label :reserved, class: "col-sm-2 control-label" %>
+  <div class="form-group row">
+    <%= f.label :reserved, t(:reserved), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.check_box :reserved, class: 'form-control' %>
     </div>
 	</div>
-	<div class="form-group">
-    <%= f.label :assigned_address, class: "col-sm-2 control-label" %>
+	<div class="form-group row">
+    <%= f.label :assigned_address, t(:assigned_address), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= @address.assigned_address.operator.name if @address.assigned_address %>
     </div>
 	</div>	
 
-  <div class="actions col-md-offset-2">
+  <div class="actions offset-md-2">
     <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

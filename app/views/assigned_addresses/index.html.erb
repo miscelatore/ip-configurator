@@ -1,14 +1,16 @@
-<div class="container">
+<div class="container-fluid">
   
 	<div class="page-header clearfix">
 	  <div class="pull-left">
-	    <h1>Listing Assigned Addresses</h1>
+	    <h1><%= t(:listing_assigned_addresses) %></h1>
 	  </div>
 	  <div class="pull-right btn-header">
-	    <a href="<%= new_assigned_address_path %>" class="btn btn-primary">
-	      <span class="glyphicon glyphicon-plus"></span>
-	      New Assigned Address
-	    </a>
+      <% if can? :create, @assigned_addresses.build %>
+  	    <a href="<%= new_assigned_address_path %>" class="btn btn-primary">
+  	      <span class="glyphicon glyphicon-plus"></span>
+          <%= t(:new_assigned_address) %>
+  	    </a> 
+      <% end %>
 	  </div>
 	</div>
 	
@@ -23,6 +25,4 @@
 	    <%= render 'assigned_addresses' %>
 	  </div>
 	</div>
-
-	<%= paginate @assigned_addresses %>
 </div>

@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   
   has_and_belongs_to_many :roles
   has_many :networks
@@ -14,8 +14,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
          
-  def role?(role)
-   return !!self.roles.find_by_name(role.to_s.camelize)
+  # def role?(role)
+  #  return !!self.roles.find_by_name(role.to_s.camelize)
+  # end
+  
+  def role?(role_sym)
+    roles.any? { |r| r.name.underscore.to_sym == role_sym }
   end
   
   # validates_presence_of :username
@@ -24,4 +28,16 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :on => :create
 
+
+   def admin?
+     role?(:administrator)
+   end
+   
+   def opertaror?
+     role?(:operator)
+   end
+   
+   def stff?
+     role?(:staff)
+   end
 end

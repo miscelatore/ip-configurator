@@ -19,12 +19,13 @@ class DomainNameValidator < ActiveModel::EachValidator
   end
 end
 
-class Network < ActiveRecord::Base
+class Network < ApplicationRecord
   self.table_name = "network"
   
   belongs_to :user
   has_many :addresses, dependent: :destroy
   
+  default_scope -> { order(:start_address) }
   scope :sorted, -> { order(:start_address) }
   scope :enabled, -> { where(dhcp_enabled: true) }
   
@@ -36,13 +37,13 @@ class Network < ActiveRecord::Base
   validates :server_dns, presence: true, nameservers: true
   validates :dns_zone, presence: true, domain_name: true
   validates :netbios_name_servers, allow_blank: true, format: { with: Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex), message: "Not a valid IPaddr format"}
-  validates :netbios_node_type, inclusion: { in: %w(1 2 4 8) }, presence: true, unless: "netbios_name_servers.blank?"
+  validates :netbios_node_type, inclusion: { in: %w(1 2 4 8) }, presence: true, unless: -> { self.netbios_name_servers.blank? }
   validates :ntp_servers, allow_blank: true, format: { with: Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex), message: "Not a valid IPaddr format"}
   
   after_create :create_addresses
   after_update :upd_dhcp_configuration
   
-  #TODO: update of addresses by before_update callbacks
+  # TODO: update of addresses by before_update callbacks
   
   
   private

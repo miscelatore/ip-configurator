@@ -1,29 +1,25 @@
-<div class="container">
-  
-	<div class="page-header clearfix">
-	  <div class="pull-left">
-	    <h1>Listing Networks</h1>
+<div class="container-fluid">
+	<div class="page-header clearfix mt-3">
+	  <div class="float-left">
+	    <h1><%= t(:listing_networks) %></h1>
 	  </div>
-	  <div class="pull-right btn-header">
+	  <div class="float-right btn-header">
 	    <a href="<%= new_network_path %>" class="btn btn-primary">
-	      <span class="glyphicon glyphicon-plus"></span>
-	      New Network
+	      <i class="fas fa-plus"></i>
+	      <%= t(:new_network) %>
 	    </a>
 	  </div>
 	</div>
 
-	<div class="row">
+	<div class="mt-1">
 	  <div class="column">
 	    <%= render 'search' %>
 	  </div>
 	</div>
 
-	<div class="row">
+	<div class="mt-3">
 	  <div class="column">
 	    <%= render 'networks' %>
 	  </div>
 	</div>
-	
-		<%= paginate @networks %>
-
 </div>

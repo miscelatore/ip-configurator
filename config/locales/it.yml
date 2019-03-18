@@ -1,0 +1,293 @@
+it:
+  activerecord:
+    models:
+      network: "Network"
+      address: "Indirizzo IP"
+      assigned_address: "Assegna indirizzo IP"
+      operator: "Operatore"
+      hardware: "Tipo dispositivo"
+      location: ""
+    attributes:
+      # post:
+      #   title: "titolo"
+      #   body: "corpo"
+      account:
+        passwd: "Password"  
+    errors:
+      # The values :model :attribute and :value are always available for interpolation
+      # The value :count is available when applicable. Can be used for pluralization.
+      messages:
+        inclusion: "non è incluso nella lista"
+        exclusion: "è riservato"
+        invalid: "non è valido"
+        confirmation: "non coincide con la conferma"
+        accepted: "deve essere accettata"
+        empty: "non può essere vuoto"
+        blank: "non può essere lasciato in bianco"
+        too_long: "è troppo lungo (il massimo è %{count} caratteri)"
+        too_short: "è troppo corto (il minimo è %{count} caratteri)"
+        wrong_length: "è della lunghezza sbagliata (deve essere di %{count} caratteri)"
+        taken: "è già in uso"
+        not_a_number: "non è un numero"
+        greater_than: "deve essere superiore a %{count}"
+        greater_than_or_equal_to: "deve essere superiore o uguale a %{count}"
+        equal_to: "deve essere uguale a %{count}"
+        less_than: "deve essere meno di %{count}"
+        less_than_or_equal_to: "deve essere meno o uguale a %{count}"
+        odd: "deve essere dispari"
+        even: "deve essere pari"
+        # Append your own errors here or at the model/attributes scope.
+      models:
+        # Overrides default messages
+        # post: 
+        #   blank: 'custom error messages for this model'
+        #   attributes:
+        #     body:
+        #     blank: 'custom error message for this attribute'
+
+      template:
+        header:
+          one:   "un errore non ha consentito questo %{model} dall'essere salvato"
+          other:  "%{count} errori non hanno consentito questo %{model} di essere salvato"
+          # The variable :count is also available
+        body: "Ci sono stati problemi con i seguenti campi:"
+
+  helpers:
+    submit:
+      # This will be the default ones, will take effect if no other
+      # are specifically defined for the models.
+      create: "Crea %{model}"
+      update: "Aggiorna %{model}"
+      
+      user:
+        create: "Imposta la nuova Password"
+      
+        
+
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%d-%m-%Y"
+      short: "%d %b"
+      long: "%d %B %Y"
+
+    day_names: [Domenica, Lunedì, Martedì, Mercoledì, Giovedì, Venerdì, Sabato]
+    abbr_day_names: [Dom, Lun, Mar, Mer, Gio, Ven, Sab]
+
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]
+    abbr_month_names: [~, Gen, Feb, Mar, Apr, Mag, Giu, Lug, Ago, Set, Ott, Nov, Dic]
+    # Used in date_select and datime_select.
+    # order: [ :day, :month, :year ]
+
+  time:
+    formats:
+      default: "%a %d %b %Y, %H:%M:%S %z"
+      short: "%d %b %H:%M"
+      long: "%d %B %Y %H:%M"
+    am: "am"
+    pm: "pm"
+
+  # Used in array.to_sentence.
+  support:
+    array:
+        words_connector: ", "
+        two_words_connector: " e "
+        last_word_connector: ", e "
+
+  number:
+    # Used in number_with_delimiter()
+    # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'
+    format:
+      # Sets the separator between the units, for more precision (e.g. 1.0 / 2.0 == 0.5)
+      separator: ","
+      # Delimets thousands (e.g. 1,000,000 is a million) (always in groups of three)
+      delimiter: "."
+      # Number of decimals, behind the separator (the number 1 with a precision of 2 gives: 1.00)
+      precision: 3
+
+    # Used in number_to_currency()
+    currency:
+      format:
+        # Where is the currency sign? %u is the currency unit, %n the number (default: $5.00)
+        format: "%n %u"
+        unit: "€"
+        # These three are to override number.format and are optional
+        separator: "."
+        delimiter: ","
+        precision: 2
+
+    # Used in number_to_percentage()
+    percentage:
+      format:
+        # These three are to override number.format and are optional
+        # separator:
+        delimiter: ""
+        # precision:
+
+    # Used in number_to_precision()
+    precision:
+      format:
+        # These three are to override number.format and are optional
+        # separator:
+        delimiter: ""
+        # precision:
+
+    # Used in number_to_human_size()
+    human:
+      format:
+        # These three are to override number.format and are optional
+        # separator:
+        delimiter: ""
+        precision: 1
+      storage_units: [Bytes, KB, MB, GB, TB]
+
+  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+  datetime:
+    distance_in_words:
+      half_a_minute: "mezzo minuto"
+      less_than_x_seconds:
+        one:  "meno di un secondo"
+        other: "meno di %{count} secondi"
+      x_seconds:
+        one:  "1 secondo"
+        other: "%{count} secondi"
+      less_than_x_minutes:
+        one:  "meno di un minuto"
+        other: "meno di %{count} minuti"
+      x_minutes:
+        one:  "1 minuto"
+        other: "%{count} minuti"
+      about_x_hours:
+        one:  "circa un'ora"
+        other: "circa %{count} ore"
+      x_days:
+        one:  "1 giorno"
+        other: "%{count} giorni"
+      about_x_months:
+        one:  "circa un mese"
+        other: "circa %{count} mesi"
+      x_months:
+        one:  "1 mese"
+        other: "%{count} mesi"
+      about_x_years:
+        one:  "circa un anno"
+        other: "circa %{count} anni"
+      over_x_years:
+        one:  "oltre un anno"
+        other: "oltre %{count} anni"
+  
+  sign_out: "Uscita"
+  sign_in: "Accedi"
+  are_you_sure: "Sei sicuro?"
+  back: "Indietro"      
+  name: "Nome"
+  username: "Username"
+  active: "Attivo"
+  created_at: "creato il"
+  updated_at: "aggiornato il"
+  action: "Azioni"
+  search_options: "Opzioni di ricerca"
+  domain: "Dominio"
+  domains: "Domini"
+  lmtp_transport: "trasporto LMTP"
+  owner: "Priprietario"
+  per_page_results: "Ris. per pagina"
+  show: "Visualizza"
+  edit: "Modifica"
+  accounts: "Caselle Postali"
+  aliases: "Email Alias"
+  destroy: "Rimuovi"
+  are_you_sure_domain: "Sei sicuro di rimuovere il dominio e tutti i sui dati correlati: caselle postali ed alias?"
+  new_domain: "Nuovo Dominio"
+  listing_domains: "Elenco Domini"
+  domain: "Dominio"
+  description: "Descrizione"
+  show_domain: "Dati Dominio"
+  edit_domain: "Modifica dominio"
+  language: "Lingua"
+  clear_search: "Annulla ricerca"
+  the_form_contain_error: "La form contiene errori!"
+  total_results: "Numero occorrenze:"
+  no_results: "Nessuna occorrenza trovata con i criteri di ricerca selezionati ..."
+  remove: "Rimuovi"
+
+  listing_networks: "Elenco Reti"
+  new_network: "Nuova Rete"
+  network_created_ok: "Rete creata con successo."
+  network_updated_ok: "Rete aggiornata con successo."
+  space: "Num. IP"
+  dhcp_enabled: "DHCP Attivo"
+  editing_network: "Modifica rete"
+  
+  listing_users: "Elenco Utenti"
+  new_user: "Nuovo Utente"
+  users: "Utenti"
+  user: "Utente"
+  email: "Email"
+  role: "Ruolo"
+  password: "Password"
+  password_confirmation: "Conferma Password"
+  sign_in_count: "Num. accessi"
+  current_sign_in_at: "Data accesso corrente" 
+  last_sign_in_at: " Data ultimo accesso"
+  current_sign_in_ip: "IP accesso corrente"
+  last_sign_in_ip: "IP ultimo accesso"
+  
+  listing_addresses: "Elenco indirizzi IP"
+  editing_address: "Modifica indirizzo IP"
+  show_address: "Info indirizzo IP"
+  reserved: "Riservato"
+  assigned: "Assegnato"
+  ip_address: "IP address"
+  start_address: "Indirizzo IP rete"
+  ip: "IP"
+  network: "Network"
+  assigned_address: "Assegnato a"
+  address_created_ok: "Indirizzo IP creato con successo."
+  address_updated_ok: "Indirizzo IP aggiornato con successo."
+  
+  assigned_addresses: "Indirizzi IP assegnati"
+  listing_assigned_addresses: "Elenco indirizzi IP assegnati"
+  new_assigned_address: "Assegna Nuovo Indirizzo IP"
+  show_assigned_address: "Dati assegnamento Indirizzo IP"
+  is_reserved: "è riservato!"
+  is_invalid: "non è valido!"
+  address_id: "Indirizzo IP"
+  hostname: "Hostname"
+  hardware_id: "Tipo dispositivo"
+  operator_id: "Operatore"
+  mac: "MAC Address"
+  description: "Descrizione"
+  location_port_id: "Localizzazione porta di rete"
+  enabled: "Attivo"
+  last_seen_date: "Data ultimo accesso"
+  last_seen_date_after: "Ultimo accesso dopo il"
+  last_seen_date_before: "Ultimo accesso prima del"
+  assigned_address_created_ok: "Assegnamento Indirizzo IP creato con successo."
+  assigned_address_updated_ok: "Assegnamento Indirizzo IP aggiornato con successo."
+  
+  listing_operators: "Elenco operatori"
+  new_operator: "Nuovo operatore"
+  edit_operator: "Modifica operatore"
+  show_operator: "Visualizza operatore"
+  operator_created_ok: "Operatore creato con successo."
+  operator_updated_ok: "Operatore aggiornato con successo."
+  
+  listing_hardware_types: "Elenco tipo dispositivi"
+  new_hardware_type: "Nuovo tipo dispositivo"
+  edit_hardware_type: "Modifica tipo dispositivo"
+  show_hardware_type: "Visualizza tipo dispositivo"
+  hardware_type_created_ok: "Tipo dispositivo creato con successo."
+  hardware_type_updated_ok: "Tipo dispositivo aggiornato con successo."
+  
+  listing_locations: "Elenco ubicazioni"
+  new_location: "Nuova ubicazione"
+  edit_location: "Modifica ubicazione"
+  show_location: "Visualizza ubicazione"
+  location_created_ok: "Ubicazione creata con successo."
+  location_updated_ok: "Ubicazione aggiornata con successo."
+  add_port: "Aggiungi porta"
+  location_port: "Porta di rete"

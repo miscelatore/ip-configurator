@@ -1,64 +1,56 @@
 <%= form_for(@assigned_address, html: { class: "form-horizontal" }) do |f| %>
-  <% if @assigned_address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@assigned_address.errors.count, "error") %> prohibited this album from being saved:</h2>
-
-      <ul>
-      <% @assigned_address.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  
+  <%= render 'shared/error_messages', obj_var: @assigned_address %>
 
 	<div class="form-group">
-    <%= f.label :address_id, class: "col-sm-2 control-label" %>
+    <%= f.label :address_id, t(:address_id), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-			<%= f.hidden_field :address_id %>
-			<%= f.select(:address_id, Address.sorted.collect {|addr| [addr.toString, addr.id]}, {:include_blank => true, :selected => @assigned_address.address_id }, class: 'form-control' ) %>
+			<%= f.select(:address_id, Address.sorted.collect {|addr| [addr.toString, addr.id]}, {include_blank: true, selected: @assigned_address.address_id }, class: 'form-control' ) %>
     </div>
 	</div>
 	<div class="form-group">
-   	<%= f.label :hostname, class: "col-sm-2 control-label" %>
+   	<%= f.label :hostname, t(:hostname), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
 			<div class="input-group">
       	<%= f.text_field :hostname, class: 'form-control' %>
- 				<span class="input-group-addon"><%= '.' + @assigned_address.address.network.dns_zone if !@assigned_address.new_record? %></span>
+ 				<% unless @assigned_address.new_record? %>
+          <span class="input-group-addon"><%= '.' + @assigned_address.address.network.dns_zone %></span>
+        <% end %>
  			</div>
 		</div>
 	</div>
 	<div class="form-group">
-    <%= f.label :hardware_id, class: "col-sm-2 control-label" %>
+    <%= f.label :hardware_id, t(:hardware_id), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-			<%= f.select(:hardware_id, Hardware.all.sorted.collect {|hw| [hw.name, hw.id]}, {:include_blank => true, :selected => @assigned_address.hardware_id }, class: 'form-control' ) %>
+			<%= f.select(:hardware_id, Hardware.all.sorted.collect {|hw| [hw.name, hw.id]}, {include_blank: true, selected: @assigned_address.hardware_id }, class: 'form-control' ) %>
     </div>
 	</div>
 	<div class="form-group">
-    <%= f.label :operator_id, class: "col-sm-2 control-label" %>
+    <%= f.label :operator_id, t(:operator_id), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-			<%= f.select(:operator_id, Operator.all.sorted.collect {|op| [op.name, op.id]}, {:include_blank => true, :selected => @assigned_address.operator_id }, class: 'form-control' ) %>	
+			<%= f.select(:operator_id, Operator.all.sorted.collect {|op| [op.name, op.id]}, {include_blank: true, selected: @assigned_address.operator_id }, class: 'form-control' ) %>	
     </div>
 	</div>
   <div class="form-group">
-    <%= f.label :mac, class: "col-sm-2 control-label" %>
+    <%= f.label :mac, t(:mac), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :mac, class: 'form-control' %>
     </div>
 	</div>
   <div class="form-group">
-    <%= f.label :description, class: "col-sm-2 control-label" %>
+    <%= f.label :description, t(:description), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.text_field :description, class: 'form-control' %>
     </div>
 	</div>	
   <div class="form-group">
-    <%= f.label :location_port_id, class: "col-sm-2 control-label" %>
+    <%= f.label :location_port_id, t(:location_port_id), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
-			<%= f.select(:location_port_id, LocationPort.all.sorted.collect {|lp| [lp.toString, lp.id]}, {:include_blank => true, :selected => @assigned_address.location_port_id }, class: 'form-control' ) %>	
+			<%= f.select(:location_port_id, LocationPort.all.sorted.collect {|lp| [lp.toString, lp.id]}, {include_blank: true, selected: @assigned_address.location_port_id }, class: 'form-control' ) %>	
     </div>
 	</div>
   <div class="form-group">
-    <%= f.label :enabled, class: "col-sm-2 control-label" %>
+    <%= f.label :enabled, t(:enabled), class: "col-sm-2 control-label" %>
     <div class="col-sm-6">
       <%= f.check_box :enabled, class: 'form-control' %>
     </div>

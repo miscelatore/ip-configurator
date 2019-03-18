@@ -21,6 +21,21 @@ db/*.sqlite3
 /db/migrate/20140903163234_import_data_from_old.rb
 /log/*
 /tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
+
+/node_modules
+/yarn-error.log
+
+/public/assets
+.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
 
 # various artifacts
 **.war

@@ -1,40 +1,42 @@
-<div class="page-header clearfix">
-  <div class="pull-left">
-    <h1>Show address <%= @address.ip_address %></h1>
+<div class="container">
+  <div class="clearfix mt-3 mx-3">
+    <div class="float-left">
+      <h1><%= t(:show_address)%> <%= @address.ip_address %></h1>
+    </div>
+    <div class="float-right btn-header">
+      <a href="<%= addresses_path %>" class="btn btn-outline-dark">
+        <i class="fas fa-angle-left"></i>
+        <%= t(:back) %>
+      </a>
+      <a href="<%= edit_address_path @address %>" class="btn btn-outline-dark">
+        <i class="fas fa-edit"></i>
+        <%= t(:edit) %>
+      </a>
+    </div>
   </div>
-  <div class="pull-right btn-header">
-    <a href="<%= addresses_path %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-arrow-left"></span>
-      Back
-    </a>
-    <a href="<%= edit_address_path @address %>" class="btn btn-default">
-      <span class="glyphicon glyphicon-eye-open"></span>
-      Edit
-    </a>
-  </div>
-</div>
 
 
-<div class="panel panel-default">
-  <div class="panel-body">
-		<dl class="dl-horizontal lead">
-		  <dt>IP:</dt>
-		  <dd><%= @address.ip_address if @address.ip_address %></dd>
+  <div class="card card-default mt-3 mx-3">
+    <div class="card-body">
+  		<dl class="row">
+  		  <dt class="col-sm-3"><%= t(:ip_address)%>:</dt>
+  		  <dd class="col-sm-9"><%= @address.ip_address if @address.ip_address %></dd>
 			
-			<dt>Rete:</dt>
-		  <dd><%= @address.network.name if @address.network %></dd>
+  			<dt class="col-sm-3"><%= t(:network)%>:</dt>
+  		  <dd class="col-sm-9"><%= @address.network.name if @address.network %></dd>
 
-			<dt>Riservato:</dt>
-		  <dd><%= @address.reserved %></dd>
+  			<dt class="col-sm-3"><%= t(:reserved)%>:</dt>
+  		  <dd class="col-sm-9"><%= @address.reserved %></dd>
 
-			<dt>Assegnato a:</dt>
-		  <dd><%= @address.assigned_address.operator.name if @address.assigned_address %></dd>
+  			<dt class="col-sm-3"><%= t(:assigned_address)%>:</dt>
+  		  <dd class="col-sm-9"><%= @address.assigned_address.operator.name if @address.assigned_address %></dd>
 
-			<dt><%= t(:created_at) %>:</dt>
-		  <dd><%= @address.created_at  %></dd>
+  			<dt class="col-sm-3"><%= t(:created_at) %>:</dt>
+  		  <dd class="col-sm-9"><%= @address.created_at  %></dd>
 
-			<dt><%= t(:updated_at) %>:</dt>
-		  <dd><%= @address.updated_at  %></dd>	
-		</dl>
- </div>
+  			<dt class="col-sm-3"><%= t(:updated_at) %>:</dt>
+  		  <dd class="col-sm-9"><%= @address.updated_at  %></dd>	
+  		</dl>
+   </div>
+  </div>
 </div>

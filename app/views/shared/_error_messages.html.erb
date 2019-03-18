@@ -1,0 +1,12 @@
+<% if obj_var.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert-danger">
+      <%= t(:the_form_contain_error) %>
+    </div>
+    <ul>
+    <% obj_var.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

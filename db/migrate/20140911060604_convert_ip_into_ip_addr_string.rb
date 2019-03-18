@@ -1,6 +1,6 @@
 require 'ip'
 
-class ConvertIpIntoIpAddrString < ActiveRecord::Migration
+class ConvertIpIntoIpAddrString < ActiveRecord::Migration[4.2]
   
   class Address < ActiveRecord::Base
     self.table_name = "address"

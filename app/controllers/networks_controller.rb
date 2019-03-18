@@ -1,15 +1,21 @@
 class NetworksController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   
   before_action :set_network, only: [:show, :edit, :update, :destroy]
   before_action :clear_search_index, only: [:index]
+  
+  include CommonsControllable
 
   # GET /networks
   # GET /networks.json
   def index
-    @q = Network.search(search_params)
-    @q.sorts = 'start_address' if @q.sorts.empty?
-    @networks = @q.result().page(params[:page])
+    if params[:limit_cont].nil?
+      params[:limit_cont] = 20
+    end
+    
+    @q = Network.ransack(search_params)
+    @total_result = @q.result().count
+    @networks = @q.result().page(params[:page]).per(params[:limit_cont].to_i)
   end
   
   # GET /networks/1
@@ -25,11 +31,11 @@ class NetworksController < ApplicationController
   # POST /networks
   # POST /networks.json
   def create
-    @network = Network.new(network_params)
+    @network = current_user.networks.new(network_params)
 
     respond_to do |format|
       if @network.save
-        format.html { redirect_to @network, notice: 'Network was successfully created.' }
+        format.html { redirect_to @network, notice: t(:nertwork_created_ok) }
         format.json { render action: 'show', status: :created, location: @network }
       else
         format.html { render action: 'new' }
@@ -43,7 +49,7 @@ class NetworksController < ApplicationController
   def update
     respond_to do |format|
       if @network.update(network_params)
-        format.html { redirect_to @network, notice: 'Network was successfully updated.' }
+        format.html { redirect_to @network, notice: t(:nertwork_updated_ok) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -79,32 +85,21 @@ class NetworksController < ApplicationController
     def search_params
       if !params[:q].nil?
             if !params[:q][:name_cont].nil?
-               session[:name] = params[:q][:name_cont].to_s
+               session[:name_cont] = params[:q][:name_cont].to_s
             end
             if !params[:q][:start_address_cont].nil?
-               session[:start_address] = params[:q][:start_address_cont]
+               session[:start_address_cont] = params[:q][:start_address_cont]
             end
             if !params[:q][:dhcp_enabled_eq].nil?
-               session[:dhcp_enabled] = params[:q][:dhcp_enabled_eq]
+               session[:dhcp_enabled_eq] = params[:q][:dhcp_enabled_eq]
             end
           else
             params[:q] = Hash.new
-            params[:q][:name_cont]            ||= session[:name]
-            params[:q][:start_address_cont]   ||= session[:start_address]
-            params[:q][:dhcp_enabled_eq]      ||= session[:dhcp_enabled]
+            params[:q][:name_cont]            ||= session[:name_cont]
+            params[:q][:start_address_cont]   ||= session[:start_address_cont]
+            params[:q][:dhcp_enabled_eq]      ||= session[:dhcp_enabled_eq]
           end
       
       params[:q]
-    end
-
-    def clear_search_index
-      if params[:search_cancel]
-        params.delete(:search_cancel)
-        if(!search_params.nil?)
-          search_params.each do |key, param|
-            search_params[key] = nil
-          end
-        end
-      end
     end
 end

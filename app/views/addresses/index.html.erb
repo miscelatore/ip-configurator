@@ -1,26 +1,21 @@
-<div class="container">
-  
-	<div class="page-header clearfix">
-	  <div class="pull-left">
-	    <h1>Listing Addresses</h1>
+<div class="container-fluid">
+	<div class="page-header clearfix mt-3">
+	  <div class="float-left">
+	    <h1><%= t(:listing_addresses)%></h1>
 	  </div>
-	  <div class="pull-right btn-header">
-	    
+	  <div class="float-right btn-header">  
 	  </div>
 	</div>
 	
-	<div class="row">
+	<div class="mt-1">
 	  <div class="column">
 	    <%= render 'search' %>
 	  </div>
 	</div>
 
-	<div class="row">
+	<div class="mt-3">
 	  <div class="column" id="addresses">
 	    <%= render 'addresses' %>
 	  </div>
 	</div>
-	
-	<%= paginate @addresses %>
-
 </div>

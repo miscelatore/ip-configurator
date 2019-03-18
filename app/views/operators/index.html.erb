@@ -2,12 +2,12 @@
   
 	<div class="page-header clearfix">
 	  <div class="pull-left">
-	    <h1>Listing Operators</h1>
+	    <h1><%= t(:listing_operators)%></h1>
 	  </div>
 	  <div class="pull-right btn-header">
 	    <a href="<%= new_operator_path %>" class="btn btn-primary">
 	      <span class="glyphicon glyphicon-plus"></span>
-	      New Operator
+	      <%= t(:new_operator)%>
 	    </a>
 	  </div>
 	</div>
@@ -23,7 +23,4 @@
 	    <%= render 'operators' %>
 	  </div>
 	</div>
-	
-		<%= paginate @operators %>
-
 </div>

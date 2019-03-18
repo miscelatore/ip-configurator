@@ -1,28 +1,40 @@
-<div class="panel panel-warning">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t('search_options')%></h3>
+<div class="card border-warning">
+  <div class="card-header border-warning">
+    <%= t('search_options')%>
   </div>
-  <div class="panel-body">
-		<%= search_form_for( @q, url: addresses_path, :method => :get, html: { class: "form-inline", role: "form" }) do |f| %>
-					<div class="form-group">
-		    		<%= f.label :ip_address_cont, t('ip_address') %><br />
-		    		<%= f.text_field :ip_address_cont ,:class => "form-control" %>
+  <div class="card-body">
+		<%= search_form_for( @q, url: addresses_path, method: :get, html: { role: "form" }) do |f| %>
+			<div class="form-row">		
+          <div class="col-md-3 mb-3">
+		    		<%= f.label :ip_address_cont, t('ip_address') %>
+		    		<%= f.text_field :ip_address_cont, value: session[:ip_address_cont], class: "form-control" %>
 			  	</div>
-					<div class="form-group">
-					  <%= f.label :network_id_eq, t('network') %><br />
-						<%= f.select(:network_id_eq, Network.all.collect {|net| [net.start_address, net.id]}, {:include_blank => true }, :class => "form-control" ) %>
+					
+          <div class="col-md-3 mb-3">
+					  <%= f.label :network_id_eq, t('network') %>
+						<%= f.select(:network_id_eq, Network.all.collect {|net| [net.start_address, net.id]}, {include_blank: true, selected: session[:network_id_eq] }, class: "form-control" ) %>
 					</div>
-					<div class="form-group">
-		    		<%= f.label :reserved_eq, t('reserved') %><br />
-						<%= f.select(:reserved_eq, %w{true false}, {:include_blank => true }, :class => "form-control" ) %>
+					
+          <div class="col-md-2 mb-3">
+		    		<%= f.label :reserved_eq, t('reserved') %>
+						<%= f.select(:reserved_eq, %w{true false}, {include_blank: true, selected: session[:reserved_eq] }, class: "form-control" ) %>
 					</div>
-					<div class="form-group">	
-		    		<%= f.label :assigned_address_address_id_present, t('assigned') %><br />
-						<%= f.select(:assigned_address_address_id_present, %w{true}, {:include_blank => true }, :class => "form-control" ) %>
+					
+          <div class="col-md-3 mb-3">	
+		    		<%= f.label :assigned_address_address_id_present, t('assigned') %>
+						<%= f.select(:assigned_address_address_id_present, %w{true}, {include_blank: true, selected: session[:assigned_address_address_id_present] }, class: "form-control" ) %>
 			  	</div>
-					<div class="form-group pull-right">
-						 <%= f.submit class: 'btn btn-warning' %>
-			  	</div>
+          <div class="form-group col-md-1 mb-3">
+            <%= render 'shared/per_page_results', obj_var: f %>
+          </div>
+			</div>
+      
+      <div class="form-row">
+        <div class="form-group col-md-3 mb-3">			
+					<%= f.submit class: 'btn btn-warning' %>
+          <%= link_to t(:clear_search), addresses_path(search_cancel: true), class: "btn btn-outline-dark" %>
+			  </div>
+      </div>
 		<% end %>
 	</div>
 </div>
